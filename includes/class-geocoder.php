@@ -100,12 +100,10 @@ class Geocoder {
         if ( wp_http_validate_url( $url ) ) {
             $request = $this->_get_data( $url );
 
+            $return = new \WP_Error( $request['response']['code'], $request['response']['message'] );
+
             if ( 200 == $request['response']['code'] ) {
                 $return = json_decode( $request['body'], true );
-            }
-
-            if ( ! 200 == $request['response']['code'] ) {
-                $return = new \WP_Error( $request['response']['code'], $request['response']['message'] );
             }
 
         }

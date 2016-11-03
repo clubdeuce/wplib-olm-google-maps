@@ -1,0 +1,29 @@
+<phpunit
+        bootstrap="bootstrap.php"
+        backupGlobals="false"
+        colors="true"
+        convertErrorsToExceptions="true"
+        convertNoticesToExceptions="true"
+        convertWarningsToExceptions="true"
+        verbose="true"
+>
+    <testsuites>
+        <testsuite name="unit">
+            <directory suffix=".php">./unit/</directory>
+        </testsuite>
+        <testsuite name="integration">
+            <directory suffix=".php">./integration/</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">../includes</directory>
+            <file>../component-google-maps.php</file>
+        </whitelist>
+    </filter>
+    <logging>
+        <log type="coverage-clover" target="../reports/logs/clover.xml" />
+        <log type="coverage-html" target="../reports/coverage" />
+        <log type="coverage-text" target="php://stdout" />
+    </logging>
+</phpunit>
