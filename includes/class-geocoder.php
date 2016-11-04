@@ -21,7 +21,7 @@ class Geocoder {
     function __construct( $args = array() ) {
 
         $args = wp_parse_args( $args, array(
-            'api_key' => sprintf( __( 'Please set the api key for class %1$s', 'cgm' ), get_called_class() ),
+            'api_key' => '',
         ) );
 
         $this->_api_key = $args['api_key'];
