@@ -114,7 +114,7 @@ class Geocoder {
 
     /**
      * @param $url
-     * @return array|bool|mixed|\WP_Error
+     * @return array|\WP_Error
      */
     private function _get_data( $url ) {
 
