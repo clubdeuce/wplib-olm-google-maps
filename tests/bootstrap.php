@@ -23,3 +23,4 @@ require VENDOR_DIRECTORY . '/wplib/wplib/wplib.php';
 WPLib::initialize();
 
 require_once dirname(__DIR__) . '/includes/class-geocoder.php';
+require_once dirname(__DIR__) . '/includes/class-marker-model.php';
