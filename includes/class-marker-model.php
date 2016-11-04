@@ -25,11 +25,14 @@ class Marker_Model extends \WPLib_Model_Base {
      */
     protected $_latlng;
 
+    /**
+     * @return array|\WP_Error
+     */
     function latlng_object() {
         if (empty($this->_latlng)) {
             $this->_latlng   = $this->_geocoder()->geocode($this->_address);
         }
-
+        
         return json_encode( $this->_latlng );
     }
 
