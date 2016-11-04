@@ -49,6 +49,15 @@ class TestGeocoder extends TestCase {
     }
 
     /**
+     * @covers ::_get_data
+     */
+    public function testGetDataCache() {
+        wp_cache_add( md5(serialize('foo.bar')), 'foobar');
+
+        $this->assertEquals('foobar', $this->reflectionMethodInvokeArgs($this->_geocoder, '_get_data', 'foo.bar'));
+    }
+
+    /**
      * @covers ::_parse_response
      */
     public function testParseResponse() {
