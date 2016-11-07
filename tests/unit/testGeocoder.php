@@ -7,7 +7,7 @@ use Clubdeuce\WPLib\Components\GoogleMaps\Tests\TestCase;
 
 /**
  * Class TestGeocoder
- * @package Clubdeuce\WPLib\Components\GoogleMaps\Tests\UnitTests
+ * @package            Clubdeuce\WPLib\Components\GoogleMaps\Tests\UnitTests
  * @coversDefaultClass Clubdeuce\WPLib\Components\GoogleMaps\Geocoder
  */
 class TestGeocoder extends TestCase {
@@ -61,9 +61,27 @@ class TestGeocoder extends TestCase {
      * @covers ::_make_location
      */
     public function testMakeLocation() {
-        $response = $this->reflectionMethodInvokeArgs($this->_geocoder, '_make_location', json_decode(file_get_contents(INCLUDES_DIR . '/geocoder-response.json'), true));
+        $location = $this->reflectionMethodInvokeArgs($this->_geocoder, '_make_location', json_decode(file_get_contents(INCLUDES_DIR . '/geocoder-response.json'), true));
 
-        $this->assertInstanceOf('\Clubdeuce\WPLib\Components\GoogleMaps\Location', $response);
+        $this->assertInstanceOf('\Clubdeuce\WPLib\Components\GoogleMaps\Location', $location);
+        $this->assertEquals('1600 Amphitheatre Parkway, Mountain View, CA 94043, USA', $location->address());
+        $this->assertEquals('1600 Amphitheatre Parkway, Mountain View, CA 94043, USA', $location->formatted_address());
+        $this->assertEquals(37.4224764, $location->latitude());
+        $this->assertEquals(-122.0842499, $location->longitude());
+        $this->assertEquals('ChIJ2eUgeAK6j4ARbn5u_wAGqWA', $location->place_id());
+        $this->assertInternalType('array', $location->viewport());
+        $this->assertArrayHasKey('northeast', $location->viewport());
+        $this->assertArrayHasKey('southwest', $location->viewport());
+        $this->assertInternalType('array', $location->viewport()['northeast']);
+        $this->assertArrayHasKey('lat', $location->viewport()['northeast']);
+        $this->assertArrayHasKey('lng', $location->viewport()['northeast']);
+        $this->assertEquals(37.4238253802915, $location->viewport()['northeast']['lat']);
+        $this->assertEquals(-122.0829009197085, $location->viewport()['northeast']['lng']);
+        $this->assertInternalType('array', $location->viewport()['southwest']);
+        $this->assertArrayHasKey('lat', $location->viewport()['southwest']);
+        $this->assertArrayHasKey('lng', $location->viewport()['southwest']);
+        $this->assertEquals(37.4211274197085, $location->viewport()['southwest']['lat']);
+        $this->assertEquals(-122.0855988802915, $location->viewport()['southwest']['lng']);
     }
 
     /**
