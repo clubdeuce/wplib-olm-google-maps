@@ -2,8 +2,10 @@
 
 namespace Clubdeuce\WPLib\Components\GoogleMaps\Tests\UnitTests;
 
+use Clubdeuce\WPLib\Components\GoogleMaps\Location;
 use Clubdeuce\WPLib\Components\GoogleMaps\Marker_Model;
 use Clubdeuce\WPLib\Components\GoogleMaps\Tests\TestCase;
+use Mockery\Loader;
 use Mockery\Mock;
 
 /**
@@ -14,28 +16,34 @@ use Mockery\Mock;
 class TestMarkerModel extends TestCase {
 
     /**
+     * @var Location
+     */
+    private $_location;
+
+    /**
      * @var Marker_Model
      */
     private $_model;
-
-    /**
-     * @var string
-     */
-    private $_address = '1600 Amphitheatre Parkway Mountain View CA';
 
     /**
      * @var Mock
      */
     private $_geocoder;
 
-    /**
-     * @var array
-     */
-    private $_latlng = ['lat' => 100.2345325, 'lng' => -45.23423423567];
 
     public function setUp() {
+        $this->_location = new Location([
+            'address'           => '123 Anywhere Street Anywhere NY',
+            'formatted_address' => '123 Anywhere Street, Anywhere, NY 12345 USA',
+            'latitude'          => 100.12345,
+            'longitude'         => -100.12345,
+            'place_id'          => 'foobar',
+            'types'             => ['foo', 'bar'],
+            'viewport'          => ['northeast' => ['lat' => 100.12346, 'lng' => -100.12344], 'southwest' => ['lat' => 100.12344, 'lng' => -100.12346]],
+        ]);
+
         $this->_geocoder = \Mockery::mock('\Clubdeuce\WPLib\Components\GoogleMaps\Geocoder');
-        $this->_geocoder->shouldReceive('geocode')->andReturn($this->_latlng);
+        $this->_geocoder->shouldReceive('geocode')->andReturn($this->_location);
 
         $this->_model = new Marker_Model([
             'address'  => $this->_address,
@@ -45,13 +53,24 @@ class TestMarkerModel extends TestCase {
 
 
     /**
-     * @covers ::latlng_object
+     * @covers ::latitude
      */
-    public function testLatLngObject() {
-        $latlng = $this->_model->latlng_object();
+    public function testLatitude() {
+        $this->assertEquals(100.12345, $this->_model->latitude());
+    }
 
-        $this->assertJson($latlng);
-        $this->assertEquals(json_encode($this->_latlng), $latlng);
+    /**
+     * @covers ::location
+     */
+    public function testLocation() {
+        $this->assertEquals($this->_location, $this->_model->location());
+    }
+
+    /**
+     * @covers ::longitude
+     */
+    public function testLongitude() {
+        $this->assertEquals(-100.12345, $this->_model->longitude());
     }
 
     /**

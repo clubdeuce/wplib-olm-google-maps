@@ -5,8 +5,6 @@ namespace Clubdeuce\WPLib\Components\GoogleMaps;
 /**
  * Class Marker_Model
  * @package Clubdeuce\WPLib\Components\GoogleMaps
- *
- * @method  array latlng()
  */
 class Marker_Model extends \WPLib_Model_Base {
 
@@ -21,19 +19,32 @@ class Marker_Model extends \WPLib_Model_Base {
     protected $_geocoder;
 
     /**
-     * @var array
+     * @var Location
      */
-    protected $_latlng;
+    protected $_location;
 
     /**
-     * @return array|\WP_Error
+     * @return float
      */
-    function latlng_object() {
-        if (empty($this->_latlng)) {
-            $this->_latlng   = $this->_geocoder()->geocode($this->_address);
+    function latitude() {
+        return $this->location()->latitude();
+    }
+
+    /**
+     * @return Location
+     */
+    function location() {
+        if ( ! is_object( $this->_location ) ) {
+            $this->_location = $this->_geocoder()->geocode($this->_address);
         }
-        
-        return json_encode( $this->_latlng );
+        return $this->_location;
+    }
+
+    /**
+     * @return float
+     */
+    function longitude() {
+        return $this->location()->longitude();
     }
 
     /**
