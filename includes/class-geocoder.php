@@ -39,19 +39,15 @@ class Geocoder {
 
     /**
      * @param  string $address
-     * @return array|\WP_Error
+     * @return Location|\WP_Error
      */
     function geocode( $address ) {
 
         $url = $this->_make_url( $address );
 
-        $return = $this->_make_request( $url );
+        $response = $this->_make_request( $url );
 
-        if ( ! is_wp_error( $return ) ) {
-            $return = $this->_parse_response( $return );
-        }
-
-        return $return;
+        return $this->_make_location( $response );
 
     }
 
@@ -70,21 +66,22 @@ class Geocoder {
     }
 
     /**
-     * Convert the response body into an array containing the latitude/longitude.
+     * Convert the response body into an a Location object
      *
      * @param  array $response
-     * @return array Contains lat and lng as key/value pairs
+     * @return Location
      */
-    private function _parse_response( $response ) {
+    private function _make_location( $response ) {
 
-        $return = array();
-
-        if ( isset( $response['results'][0]['geometry']['location'] ) ) {
-            $return['lat']  = $response['results'][0]['geometry']['location']['lat'];
-            $return['lng'] = $response['results'][0]['geometry']['location']['lng'];
-        }
-
-        return $return;
+        return new Location( array(
+            'address'           => $response['results'][0]['formatted_address'],
+            'formatted_address' => $response['results'][0]['formatted_address'],
+            'latitude'          => $response['results'][0]['geometry']['location']['lat'],
+            'longitude'         => $response['results'][0]['geometry']['location']['lng'],
+            'place_id'          => $response['results'][0]['place_id'],
+            'types'             => $response['results'][0]['types'],
+            'viewport'          => $response['results'][0]['geometry']['viewport'],
+        ) );
 
     }
 
