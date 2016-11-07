@@ -58,14 +58,12 @@ class TestGeocoder extends TestCase {
     }
 
     /**
-     * @covers ::_parse_response
+     * @covers ::_make_location
      */
-    public function testParseResponse() {
-        $response = $this->reflectionMethodInvokeArgs($this->_geocoder, '_parse_response', json_decode(file_get_contents(INCLUDES_DIR . '/geocoder-response.json'), true));
+    public function testMakeLocation() {
+        $response = $this->reflectionMethodInvokeArgs($this->_geocoder, '_make_location', json_decode(file_get_contents(INCLUDES_DIR . '/geocoder-response.json'), true));
 
-        $this->assertInternalType('array', $response);
-        $this->assertArrayHasKey('lat', $response);
-        $this->assertArrayHasKey('lng', $response);
+        $this->assertInstanceOf('\Clubdeuce\WPLib\Components\GoogleMaps\Location', $response);
     }
 
     /**
