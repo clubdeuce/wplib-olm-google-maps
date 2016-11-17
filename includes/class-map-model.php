@@ -5,27 +5,66 @@ namespace Clubdeuce\WPLib\Components\GoogleMaps;
 /**
  * Class Map_Model
  * @package Clubdeuce\WPLib\Components\GoogleMaps
- * @method  string center()
- * @method  Location[]  locations()
  */
 class Map_Model extends \WPLib_Model_Base {
 
     /**
-     * @var string
+     * @var array
      */
     protected $_center;
 
     /**
-     * @var Location[]
+     * @var Marker[]
      */
-    protected $_locations = array();
+    protected $_markers = array();
 
     /**
-     * @param Location $location
+     * @var int
      */
-    function add_location( Location $location ) {
+    protected $_zoom = 5;
 
-        $this->_locations[] = $location;
+    /**
+     * @param Marker $marker
+     */
+    function add_marker( $marker ) {
+
+        $this->_markers[] = $marker;
+
+    }
+
+    /**
+     * @param Marker[] $markers
+     */
+    function add_markers( $markers ) {
+
+        $this->_markers = array_merge( $this->_markers, $markers );
+
+    }
+
+    /**
+     * @return array
+     */
+    function center() {
+
+        return $this->_center;
+
+    }
+
+    /**
+     * @return Marker[]
+     */
+    function markers() {
+
+        return $this->_markers;
+
+    }
+
+    /**
+     * @return int
+     */
+    function zoom() {
+
+        return $this->_zoom;
 
     }
 
