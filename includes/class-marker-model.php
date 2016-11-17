@@ -24,6 +24,27 @@ class Marker_Model extends \WPLib_Model_Base {
     protected $_location;
 
     /**
+     * @var string
+     */
+    protected $_title;
+
+    /**
+     * Marker_Model constructor.
+     * @param array|object|string $address
+     * @param array $args
+     */
+    function __construct( $args = array() ) {
+
+        $args = wp_parse_args( $args, array(
+            'address' => '',
+            'title'   => '',
+        ) );
+
+        parent::__construct( $args );
+
+    }
+
+    /**
      * @return float
      */
     function latitude() {
@@ -45,6 +66,13 @@ class Marker_Model extends \WPLib_Model_Base {
      */
     function longitude() {
         return $this->location()->longitude();
+    }
+
+    /**
+     * @return string
+     */
+    function title() {
+        return $this->_title;
     }
 
     /**
