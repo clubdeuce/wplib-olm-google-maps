@@ -2,6 +2,9 @@
 namespace Clubdeuce\WPLib\Components;
 
 
+use Clubdeuce\WPLib\Components\GoogleMaps\Geocoder;
+use Clubdeuce\WPLib\Components\GoogleMaps\Map;
+
 class Google_Maps extends \WPLib_Module_Base {
 
     const INSTANCE_CLASS = 'Clubdeuce\WPLib\Components\GoogleMaps\Map';
@@ -10,6 +13,11 @@ class Google_Maps extends \WPLib_Module_Base {
      * @var string
      */
     protected static $_api_key = '';
+
+    /**
+     * @var Geocoder
+     */
+    protected static $_geocoder;
 
     /**
      * These conditions will be used to determine whether to enqueue the Google Maps JS.
@@ -31,6 +39,29 @@ class Google_Maps extends \WPLib_Module_Base {
     static function api_key() {
 
         return static::$_api_key;
+
+    }
+
+    /**
+     * @return Geocoder
+     */
+    static function geocoder() {
+
+        if ( ! isset( self::$_geocoder ) ) {
+            self::$_geocoder = new Geocoder( ['api_key' => GOOGLE_MAPS_API_KEY ] );
+        }
+
+        return self::$_geocoder;
+
+    }
+
+    /**
+     * @param  array $args
+     * @return Map
+     */
+    static function make_new_map( $args = array() ) {
+
+        return new Map( $args );
 
     }
 
