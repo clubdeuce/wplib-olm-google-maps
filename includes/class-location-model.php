@@ -7,6 +7,7 @@ namespace Clubdeuce\WPLib\Components\GoogleMaps;
  * @package Clubdeuce\WPLib\Components\GoogleMaps
  * @method  string address()
  * @method  string formatted_address()
+ * @method  string state()
  * @method  float  latitude()
  * @method  string location_type()
  * @method  float  longitude()
@@ -25,6 +26,11 @@ class Location_Model extends \WPLib_Model_Base {
      * @var string
      */
     protected $_formatted_address;
+
+    /**
+     * @var string
+     */
+    protected $_state;
 
     /**
      * @var float

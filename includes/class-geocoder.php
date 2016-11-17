@@ -76,6 +76,7 @@ class Geocoder {
         return new Location( array(
             'address'           => $response['results'][0]['formatted_address'],
             'formatted_address' => $response['results'][0]['formatted_address'],
+            'state'             => $response['results'][0]['address_components'][4]['short_name'],
             'latitude'          => $response['results'][0]['geometry']['location']['lat'],
             'longitude'         => $response['results'][0]['geometry']['location']['lng'],
             'place_id'          => $response['results'][0]['place_id'],
