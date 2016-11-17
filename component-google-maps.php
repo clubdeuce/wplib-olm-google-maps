@@ -61,7 +61,8 @@ class Google_Maps extends \WPLib_Module_Base {
      */
     static function make_new_map( $args = array() ) {
 
-        return new Map( $args );
+        $class = static::INSTANCE_CLASS;
+        return new $class( $args );
 
     }
 
