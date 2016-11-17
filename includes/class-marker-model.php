@@ -30,7 +30,6 @@ class Marker_Model extends \WPLib_Model_Base {
 
     /**
      * Marker_Model constructor.
-     * @param array|object|string $address
      * @param array $args
      */
     function __construct( $args = array() ) {
@@ -56,7 +55,7 @@ class Marker_Model extends \WPLib_Model_Base {
      */
     function location() {
         if ( ! is_object( $this->_location ) ) {
-            $this->_location = $this->_geocoder()->geocode($this->_address);
+            $this->_location = $this->_geocoder()->geocode( $this->_address );
         }
         return $this->_location;
     }
@@ -79,7 +78,7 @@ class Marker_Model extends \WPLib_Model_Base {
      * @return Geocoder
      */
     private function _geocoder() {
-        if (! is_object($this->_geocoder)) {
+        if (! is_object( $this->_geocoder ) ) {
             $this->_geocoder = new Geocoder();
         }
 
