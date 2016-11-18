@@ -17,4 +17,13 @@ namespace Clubdeuce\WPLib\Components\GoogleMaps;
  */
 class Map extends \WPLib_Item_Base {
 
+    /**
+     * @return array
+     */
+    function make_args() {
+        return array(
+            'center' => $this->center(),
+            'zoom'   => (int)$this->zoom(),
+        );
+    }
 }

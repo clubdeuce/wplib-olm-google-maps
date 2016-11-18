@@ -4,6 +4,7 @@ namespace Clubdeuce\WPLib\Components;
 
 use Clubdeuce\WPLib\Components\GoogleMaps\Geocoder;
 use Clubdeuce\WPLib\Components\GoogleMaps\Map;
+use Clubdeuce\WPLib\Components\GoogleMaps\Marker;
 
 class Google_Maps extends \WPLib_Module_Base {
 
@@ -98,6 +99,21 @@ class Google_Maps extends \WPLib_Module_Base {
         if ( in_array( true, static::$_script_conditions ) ) {
             wp_enqueue_script( 'map-control' );
         }
+
+    }
+
+    /**
+     * @param  string $address
+     * @param  array  $args
+     * @return Marker
+     */
+    static function make_marker_by_address( $address, $args ) {
+
+        $args = wp_parse_args( $args, array(
+            'address' => $address,
+        ) );
+
+        return new Marker( $args );
 
     }
 

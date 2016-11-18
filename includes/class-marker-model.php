@@ -19,6 +19,11 @@ class Marker_Model extends \WPLib_Model_Base {
     protected $_geocoder;
 
     /**
+     * @var string
+     */
+    protected $_label;
+
+    /**
      * @var Location
      */
     protected $_location;
@@ -36,11 +41,19 @@ class Marker_Model extends \WPLib_Model_Base {
 
         $args = wp_parse_args( $args, array(
             'address' => '',
+            'label'   => null,
             'title'   => '',
         ) );
 
         parent::__construct( $args );
 
+    }
+
+    /**
+     * @return string
+     */
+    function label() {
+        return $this->_label;
     }
 
     /**

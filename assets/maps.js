@@ -3,13 +3,9 @@ jQuery(document).ready(function($){
         center: objMapParams.center,
         zoom: Number(objMapParams.zoom)
     });
-    var markers = [];
 
     $.each(objMapMarkers, function(key, marker) {
-        markers.push(new google.maps.Marker({
-            map: map,
-            position: marker.position,
-            title: marker.title
-        }));
+        marker.map = map;
+        new google.maps.Marker(marker);
     });
 });
