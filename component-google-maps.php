@@ -47,11 +47,11 @@ class Google_Maps extends \WPLib_Module_Base {
      */
     static function geocoder() {
 
-        if ( ! isset( self::$_geocoder ) ) {
-            self::$_geocoder = new Geocoder( ['api_key' => GOOGLE_MAPS_API_KEY ] );
+        if ( ! isset( static::$_geocoder ) ) {
+            static::$_geocoder = new Geocoder( ['api_key' => self::api_key() ] );
         }
 
-        return self::$_geocoder;
+        return static::$_geocoder;
 
     }
 
