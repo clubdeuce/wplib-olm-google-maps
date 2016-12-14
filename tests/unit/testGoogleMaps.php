@@ -2,6 +2,8 @@
 
 namespace Clubdeuce\WPLib\Components\GoogleMaps\Tests\UnitTests;
 
+require_once dirname( dirname(__DIR__) ) . '/component-google-maps.php';
+
 use Clubdeuce\WPLib\Components\Google_Maps;
 use Clubdeuce\WPLib\Components\GoogleMaps\Tests\TestCase;
 
