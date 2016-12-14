@@ -3,9 +3,21 @@ jQuery(document).ready(function($){
         center: objMapParams.center,
         zoom: Number(objMapParams.zoom)
     });
+    var markers = [];
 
-    $.each(objMapMarkers, function(key, marker) {
-        marker.map = map;
-        new google.maps.Marker(marker);
+    var infoWindow = new google.maps.InfoWindow({
+        content: 'This is some content'
+    });
+
+    $.each(objMapMarkers, function(key, object) {
+        object.map = map;
+        markers.push(new google.maps.Marker(object));
+    });
+
+    $.each(markers, function(key, marker) {
+        marker.addListener('click', function(){
+            infoWindow.setContent(objInfoWindows[key].content);
+            infoWindow.open(map, marker);
+        });
     });
 });
