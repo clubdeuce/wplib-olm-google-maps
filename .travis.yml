@@ -24,4 +24,4 @@ before_script:
   - sed -i 's/yourusernamehere/root/' ${WP_TESTS_DIR}/wp-tests-config.php
   - sed -i 's/yourpasswordhere//' ${WP_TESTS_DIR}/wp-tests-config.php
 
-script: phpunit -c ./tests/phpunit.xml.dist
+script: ./vendor/bin/phpunit -c ./tests/phpunit.xml.dist
