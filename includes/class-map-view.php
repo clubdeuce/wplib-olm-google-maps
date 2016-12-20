@@ -11,11 +11,14 @@ class Map_View extends \WPLib_View_Base {
 
     function the_map() {
 
-        wp_localize_script( 'map-control', 'objMapParams',  $this->item->make_args() );
-        wp_localize_script( 'map-control', 'objMapMarkers', $this->_make_markers_args() );
-        wp_localize_script( 'map-control', 'objInfoWindows', $this->_make_info_windows() );
+        $height       = $this->item->height();
+        $width        = $this->item->width();
+        $map_id       = $this->item->html_id();
+        $map_params   = $this->item->make_args();
+        $markers      = $this->_make_markers_args();
+        $info_windows = $this->_make_info_windows();
 
-        echo '<div id="map" class="google-map" style="height: 400px; width: 100%"></div>';
+        require dirname( __DIR__) . '/templates/map-view.php';
 
     }
 

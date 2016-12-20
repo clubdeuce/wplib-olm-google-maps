@@ -96,10 +96,35 @@ class Marker_Model extends \WPLib_Model_Base {
     }
 
     /**
+     * Get the position of this marker. An array with key/value pairs of lat and lng.
+     *
+     * @return array
+     */
+    function position() {
+
+        return array( 'lat' => $this->latitude(), 'lng' => $this->longitude() );
+
+    }
+
+    /**
      * @return string
      */
     function title() {
         return $this->_title;
+    }
+
+    /**
+     * @param  array $args
+     * @return array
+     */
+    function marker_args( $args = array() ) {
+        $args = wp_parse_args( $args, array(
+            'position' => array( 'lat' => $this->latitude(), 'lng' => $this->longitude() ),
+            'label'    => $this->title(),
+        ) );
+
+        return $args;
+
     }
 
     /**

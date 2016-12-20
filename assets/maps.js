@@ -1,23 +1,26 @@
-jQuery(document).ready(function($){
-    var map = new google.maps.Map(document.getElementById('map'), {
-        center: objMapParams.center,
-        zoom: Number(objMapParams.zoom)
-    });
-    var markers = [];
+var gmMaps = {};
 
-    var infoWindow = new google.maps.InfoWindow({
-        content: 'This is some content'
+function generate_map(mapId, mapParams, mapMarkers, infoWindows) {
+    var map = new google.maps.Map(document.getElementById(mapId), {
+        center: mapParams.center,
+        zoom: Number(mapParams.zoom)
     });
+    markers = [];
 
-    $.each(objMapMarkers, function(key, object) {
+    infoWindow = new google.maps.InfoWindow({});
+
+    jQuery.each(mapMarkers, function(key, object) {
         object.map = map;
         markers.push(new google.maps.Marker(object));
     });
 
-    $.each(markers, function(key, marker) {
+    jQuery.each(markers, function(key, marker) {
         marker.addListener('click', function(){
-            infoWindow.setContent(objInfoWindows[key].content);
+            infoWindow.setContent(infoWindows[key].content);
             infoWindow.open(map, marker);
         });
+
     });
-});
+
+    gmMaps[mapId] = {map: map, markers: markers, infoWindow: infoWindow};
+}

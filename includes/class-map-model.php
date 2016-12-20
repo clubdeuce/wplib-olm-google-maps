@@ -14,9 +14,28 @@ class Map_Model extends \WPLib_Model_Base {
     protected $_center;
 
     /**
+     * The Map element height (default: 400px).
+     * @var string
+     */
+    protected $_height = '400px';
+
+    /**
+     * The string to use for the map HTML element id property
+     *
+     * @var string
+     */
+    protected $_html_id;
+
+    /**
      * @var Marker[]
      */
     protected $_markers = array();
+
+    /**
+     * The Map element width (default: 100%).
+     * @var string
+     */
+    protected $_width = '100%';
 
     /**
      * @var int
@@ -51,11 +70,42 @@ class Map_Model extends \WPLib_Model_Base {
     }
 
     /**
+     * @return string
+     */
+    function height() {
+
+        return $this->_height;
+
+    }
+
+    /**
+     * @return string
+     */
+    function html_id() {
+
+        if ( ! isset( $this->_html_id ) ) {
+            $this->_html_id = sprintf( 'map-%1$s', md5( serialize( array( $this->center(), $this->markers() ) ) ) );
+        }
+
+        return $this->_html_id;
+
+    }
+
+    /**
      * @return Marker[]
      */
     function markers() {
 
         return $this->_markers;
+
+    }
+
+    /**
+     * @return string
+     */
+    function width() {
+
+        return $this->_width;
 
     }
 

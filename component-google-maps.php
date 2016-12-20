@@ -107,7 +107,7 @@ class Google_Maps extends \WPLib_Module_Base {
      * @param  array  $args
      * @return Marker
      */
-    static function make_marker_by_address( $address, $args ) {
+    static function make_marker_by_address( $address, $args = array() ) {
 
         $args = wp_parse_args( $args, array(
             'address' => $address,
