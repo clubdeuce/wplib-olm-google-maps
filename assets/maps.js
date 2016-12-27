@@ -5,9 +5,8 @@ function generate_map(mapId, mapParams, mapMarkers, infoWindows) {
         center: mapParams.center,
         zoom: Number(mapParams.zoom)
     });
-    markers = [];
-
-    infoWindow = new google.maps.InfoWindow({});
+    var markers = [];
+    var windows = [];
 
     jQuery.each(mapMarkers, function(key, object) {
         object.map = map;
@@ -15,12 +14,14 @@ function generate_map(mapId, mapParams, mapMarkers, infoWindows) {
     });
 
     jQuery.each(markers, function(key, marker) {
+        var infoWindow = new google.maps.InfoWindow({
+            content: infoWindows[key].content
+        });
+        windows.push(infoWindow);
         marker.addListener('click', function(){
-            infoWindow.setContent(infoWindows[key].content);
             infoWindow.open(map, marker);
         });
-
     });
 
-    gmMaps[mapId] = {map: map, markers: markers, infoWindow: infoWindow};
+    gmMaps[mapId] = {map: map, markers: markers, infoWindows: windows};
 }

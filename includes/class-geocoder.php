@@ -43,11 +43,16 @@ class Geocoder {
      */
     function geocode( $address ) {
 
+        $location = new \WP_Error(100, 'No results found', array( 'address' => $address ) );
         $url = $this->_make_url( $address );
 
         $response = $this->_make_request( $url );
 
-        return $this->_make_location( $response );
+        if ( count( $response['results'] ) > 0 ) {
+            $location = $this->_make_location( $response['results'][0] );
+        }
+
+        return $location;
 
     }
 
@@ -71,18 +76,20 @@ class Geocoder {
      * @param  array $response
      * @return Location
      */
-    private function _make_location( $response ) {
+    private function _make_location( $results ) {
 
-        return new Location( array(
-            'address'           => $response['results'][0]['formatted_address'],
-            'formatted_address' => $response['results'][0]['formatted_address'],
-            'state'             => $response['results'][0]['address_components'][4]['short_name'],
-            'latitude'          => $response['results'][0]['geometry']['location']['lat'],
-            'longitude'         => $response['results'][0]['geometry']['location']['lng'],
-            'place_id'          => $response['results'][0]['place_id'],
-            'types'             => $response['results'][0]['types'],
-            'viewport'          => $response['results'][0]['geometry']['viewport'],
+        $response = new Location( array(
+            'address'           => $results['formatted_address'],
+            'formatted_address' => $results['formatted_address'],
+            'state'             => $results['address_components'][4]['short_name'],
+            'latitude'          => $results['geometry']['location']['lat'],
+            'longitude'         => $results['geometry']['location']['lng'],
+            'place_id'          => $results['place_id'],
+            'types'             => $results['types'],
+            'viewport'          => $results['geometry']['viewport'],
         ) );
+
+        return $response;
 
     }
 
