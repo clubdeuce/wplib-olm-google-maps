@@ -48,7 +48,7 @@ class Geocoder {
 
         $response = $this->_make_request( $url );
 
-        if ( count( $response['results'] ) > 0 ) {
+        if ( ! is_wp_error( $response ) && count( $response['results'] ) > 0 ) {
             $location = $this->_make_location( $response['results'][0] );
         }
 
