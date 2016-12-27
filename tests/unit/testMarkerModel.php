@@ -12,6 +12,7 @@ use Mockery\Mock;
  * Class TestMarkerModel
  * @package            Clubdeuce\WPLib\Components\GoogleMaps\Tests\UnitTests
  * @coversDefaultClass Clubdeuce\WPLib\Components\GoogleMaps\Marker_Model
+ * @group              marker
  */
 class TestMarkerModel extends TestCase {
 

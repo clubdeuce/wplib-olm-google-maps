@@ -9,6 +9,7 @@ use Clubdeuce\WPLib\Components\GoogleMaps\Tests\TestCase;
  * Class TestGeocoder
  * @package            Clubdeuce\WPLib\Components\GoogleMaps\Tests\UnitTests
  * @coversDefaultClass Clubdeuce\WPLib\Components\GoogleMaps\Geocoder
+ * @group              geocoder
  */
 class TestGeocoder extends TestCase {
 
@@ -61,7 +62,7 @@ class TestGeocoder extends TestCase {
      * @covers ::_make_location
      */
     public function testMakeLocation() {
-        $location = $this->reflectionMethodInvokeArgs($this->_geocoder, '_make_location', json_decode(file_get_contents(INCLUDES_DIR . '/geocoder-response.json'), true));
+        $location = $this->reflectionMethodInvokeArgs($this->_geocoder, '_make_location', json_decode(file_get_contents(TEST_INCLUDES_DIR . '/geocoder-response.json'), true));
 
         $this->assertInstanceOf('\Clubdeuce\WPLib\Components\GoogleMaps\Location', $location);
         $this->assertEquals('1600 Amphitheatre Parkway, Mountain View, CA 94043, USA', $location->address());

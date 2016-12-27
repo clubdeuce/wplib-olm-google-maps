@@ -10,6 +10,7 @@ use Clubdeuce\WPLib\Components\GoogleMaps\Tests\TestCase;
  * Class TestGeocoder
  * @package            Clubdeuce\WPLib\Components\GoogleMaps\Tests\Integration
  * @coversDefaultClass Clubdeuce\WPLib\Components\GoogleMaps\Geocoder
+ * @group              geocoder
  */
 class TestGeocoder extends TestCase {
 

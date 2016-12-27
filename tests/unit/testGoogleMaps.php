@@ -26,15 +26,11 @@ class testGoogleMaps extends TestCase {
     }
 
     /**
-     * @covers ::register_geocoder
      * @covers ::geocoder
      */
-    public function testGeocoderSetAndGet() {
-
-        $geocoder = \Mockery::mock('Clubdeuce\WPLib\Components\Google_Maps\Geocoder');
-
-        Google_Maps::register_geocoder($geocoder);
-        $this->assertEquals($geocoder, Google_Maps::geocoder());
+    public function testGeocoder() {
+        
+        $this->assertInstanceOf('Clubdeuce\WPLib\Components\GoogleMaps\Geocoder', Google_Maps::geocoder());
 
     }
 

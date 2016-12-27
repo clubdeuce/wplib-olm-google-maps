@@ -9,6 +9,7 @@ use Clubdeuce\WPLib\Components\GoogleMaps\Tests\TestCase;
  * Class TestLocationModel
  * @package            Clubdeuce\WPLib\Components\GoogleMaps\Tests\UnitTests
  * @coversDefaultClass Clubdeuce\WPLib\Components\GoogleMaps\Location_Model
+ * @group              location
  */
 class TestLocationModel extends TestCase {
 
@@ -57,14 +58,14 @@ class TestLocationModel extends TestCase {
     }
 
     /**
-     * @covers ::__call()
+     * @covers ::__call
      */
     public function testPlaceId() {
         $this->assertEquals('foobar', $this->_location->place_id());
     }
 
     /**
-     * @covers ::__call()
+     * @covers ::__call
      */
     public function testViewport() {
         $this->assertEquals(['foo', 'bar'], $this->_location->viewport());
