@@ -81,7 +81,7 @@ class Geocoder {
         $response = new Location( array(
             'address'           => $results['formatted_address'],
             'formatted_address' => $results['formatted_address'],
-            'state'             => $results['address_components'][4]['short_name'],
+            'state'             => isset( $results['address_components'][4] ) ? $results['address_components'][4]['short_name'] : '',
             'latitude'          => $results['geometry']['location']['lat'],
             'longitude'         => $results['geometry']['location']['lng'],
             'place_id'          => $results['place_id'],
