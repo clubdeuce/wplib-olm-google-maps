@@ -88,9 +88,14 @@ class Google_Maps extends \WPLib_Module_Base {
     static function _wp_enqueue_scripts_9() {
 
         $key = static::api_key();
+        $source = home_url( '/vendor/clubdeuce/wplib-olm-google-maps/dist/scripts/maps.min.js' );
 
-        wp_register_script('google-maps', "https://maps.google.com/maps/api/js?key={$key}", false, '3.0', true );
-        wp_register_script('map-control', home_url( '/vendor/clubdeuce/wplib-olm-google-maps/assets/maps.js' ), array( 'jquery', 'google-maps' ), '0.1', true );
+        if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+            $source = home_url( '/vendor/clubdeuce/wplib-olm-google-maps/assets/maps.js' );
+        }
+
+        wp_register_script('google-maps', "https://maps.google.com/maps/api/js?v=3&key={$key}", false, '3.0', true );
+        wp_register_script('map-control', $source, array( 'jquery', 'google-maps' ), '0.1.2', true );
 
         array_walk(static::$_script_conditions, function( $function ) {
             return is_callable( $function ) ? call_user_func( $function ) : $function;
@@ -117,6 +122,15 @@ class Google_Maps extends \WPLib_Module_Base {
 
     }
 
+    /**
+     * @param  string $starting_address
+     * @param  string $ending_address
+     * @return string
+     */
+    static function driving_directions_link( $starting_address, $ending_address ) {
+
+        return sprintf( 'https://maps.google.com/maps?saddr=%1$s&daddr=%2$s', urlencode( $starting_address ), urlencode( $ending_address ) );
+    }
 }
 
 Google_Maps::on_load();
