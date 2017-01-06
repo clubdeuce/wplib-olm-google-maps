@@ -123,14 +123,19 @@ class Google_Maps extends \WPLib_Module_Base {
     }
 
     /**
-     * @param  string $starting_address
-     * @param  string $ending_address
+     * @param  string $destination
+     * @param  array  $args
      * @return string
      */
-    static function driving_directions_link( $starting_address, $ending_address ) {
+    static function driving_directions_href($destination, $args = array() ) {
 
-        return sprintf( 'https://maps.google.com/maps?saddr=%1$s&daddr=%2$s', urlencode( $starting_address ), urlencode( $ending_address ) );
+        $args = wp_parse_args( $args, array(
+            'start' => 'My Location',
+        ) );
+
+        return sprintf( 'https://maps.google.com/maps?saddr=%1$s&daddr=%2$s', urlencode( $args['start'] ), urlencode( $destination ) );
     }
+
 }
 
 Google_Maps::on_load();
