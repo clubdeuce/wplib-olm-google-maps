@@ -12,7 +12,6 @@ function generate_map(mapId, mapParams, mapMarkers, infoWindows) {
         zoom: Number(mapParams.zoom)
     });
     var markers = [];
-    var windows = [];
 
     jQuery.each(mapMarkers, function(key, object) {
         object.map = map;
@@ -29,7 +28,9 @@ function generate_map(mapId, mapParams, mapMarkers, infoWindows) {
         });
     });
 
-    gmMaps[mapId] = {map: map, markers: markers, infoWindows: windows};
+
+    // Add the map, markers, and infoWindow objects to a global variable
+    gmMaps[mapId] = {map: map, markers: markers, infoWindow: infoWindow};
 }
 
 // Get the browser location using HTML 5 Geolocation
