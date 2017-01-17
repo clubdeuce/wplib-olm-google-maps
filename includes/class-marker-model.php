@@ -81,7 +81,11 @@ class Marker_Model extends \WPLib_Model_Base {
      * @return float
      */
     function latitude() {
-        return $this->location()->latitude();
+        $latitude = 0;
+        if ( ! is_wp_error( $this->location() ) ) {
+            $latitude = $this->location()->latitude();
+        }
+        return $latitude;
     }
 
     /**
@@ -98,7 +102,11 @@ class Marker_Model extends \WPLib_Model_Base {
      * @return float
      */
     function longitude() {
-        return $this->location()->longitude();
+        $longitude = 0;
+        if ( ! is_wp_error( $this->location() ) ) {
+            $longitude = $this->location()->longitude();
+        }
+        return $longitude;
     }
 
     /**
