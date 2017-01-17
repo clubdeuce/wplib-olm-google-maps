@@ -24,7 +24,7 @@ class Marker_Model extends \WPLib_Model_Base {
     protected $_info_window;
 
     /**
-     * @var string
+     * @var Marker_Label
      */
     protected $_label;
 
@@ -65,10 +65,16 @@ class Marker_Model extends \WPLib_Model_Base {
     }
 
     /**
-     * @return string
+     * @return Marker_Label
      */
     function label() {
+
+        if ( is_string( $this->_label ) ) {
+            $this->label = new Marker_Label( array( 'text' => $this->label() ) );
+        }
+
         return $this->_label;
+
     }
 
     /**
@@ -118,9 +124,13 @@ class Marker_Model extends \WPLib_Model_Base {
      * @return array
      */
     function marker_args( $args = array() ) {
+
+        $args = array_merge( $args, $this->extra_args );
+
         $args = wp_parse_args( $args, array(
             'position' => array( 'lat' => $this->latitude(), 'lng' => $this->longitude() ),
-            'label'    => $this->title(),
+            'label'    => $this->label()->options(),
+            'title'    => $this->title(),
         ) );
 
         return $args;
