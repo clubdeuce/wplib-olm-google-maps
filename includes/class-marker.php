@@ -17,17 +17,4 @@ namespace Clubdeuce\WPLib\Components\GoogleMaps;
  */
 class Marker extends \WPLib_Item_Base {
 
-    /**
-     * @return array
-     */
-    function make_options( $args = array() ) {
-
-        return wp_parse_args( $args, array(
-            'label'    => $this->label(),
-            'position' => array( 'lat' => $this->latitude(), 'lng' => $this->longitude() ),
-            'title'    => $this->title()
-        ) );
-
-    }
-
 }

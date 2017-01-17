@@ -12,7 +12,7 @@ namespace Clubdeuce\WPLib\Components\GoogleMaps;
  * @mixin    Map_View
  * @method   void  add_marker( $marker )
  * @method   array center()
- * @method   array markers()
+ * @method   Marker[] markers()
  * @method   int   zoom()
  */
 class Map extends \WPLib_Item_Base {

@@ -25,13 +25,13 @@ class Map_View extends \WPLib_View_Base {
     /**
      * @return array
      */
-    private function _make_markers_args() {
+    protected function _make_markers_args() {
 
-        /**
-         * @var Marker $marker
-         */
         return array_map( function( $marker ) {
-            return $marker->make_options();
+            /**
+             * @var Marker $marker
+             */
+            return $marker->marker_args();
         }, $this->item->markers() );
 
     }
