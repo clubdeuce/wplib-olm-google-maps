@@ -97,11 +97,11 @@ class Google_Maps extends \WPLib_Module_Base {
         wp_register_script('google-maps', "https://maps.google.com/maps/api/js?v=3&key={$key}", false, '3.0', true );
         wp_register_script('map-control', $source, array( 'jquery', 'google-maps' ), '0.1.2', true );
 
-        array_walk(static::$_script_conditions, function( $function ) {
+        $conditions = array_map( function( &$function ) {
             return is_callable( $function ) ? call_user_func( $function ) : $function;
-        } );
+        }, static::$_script_conditions );
 
-        if ( in_array( true, static::$_script_conditions ) ) {
+        if ( in_array( true, $conditions ) ) {
             wp_enqueue_script( 'map-control' );
         }
 
