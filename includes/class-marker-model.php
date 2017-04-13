@@ -78,7 +78,7 @@ class Marker_Model extends \WPLib_Model_Base {
     }
 
     /**
-     * @return float
+     * @return double
      */
     function latitude() {
         $latitude = 0;
@@ -99,7 +99,7 @@ class Marker_Model extends \WPLib_Model_Base {
     }
 
     /**
-     * @return float
+     * @return double
      */
     function longitude() {
         $longitude = 0;
