@@ -70,7 +70,7 @@ class Marker_Model extends \WPLib_Model_Base {
     function label() {
 
         if ( is_string( $this->_label ) ) {
-            $this->label = new Marker_Label( array( 'text' => $this->label() ) );
+            $this->_label = new Marker_Label( array( 'text' => $this->label() ) );
         }
 
         return $this->_label;
