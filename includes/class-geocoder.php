@@ -95,7 +95,7 @@ class Geocoder {
 
 
     /**
-     * @param $url
+     * @param  string $url
      * @return array|\WP_Error
      */
     private function _make_request( $url ) {
