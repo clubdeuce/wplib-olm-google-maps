@@ -29,7 +29,7 @@ class Marker_Model extends \WPLib_Model_Base {
     protected $_label;
 
     /**
-     * @var Location
+     * @var Location|\WP_Error
      */
     protected $_location;
 
@@ -89,7 +89,7 @@ class Marker_Model extends \WPLib_Model_Base {
     }
 
     /**
-     * @return Location
+     * @return Location|\WP_Error
      */
     function location() {
         if ( ! is_object( $this->_location ) ) {
