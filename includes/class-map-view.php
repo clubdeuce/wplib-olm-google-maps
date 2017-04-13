@@ -47,11 +47,12 @@ class Map_View extends \WPLib_View_Base {
          * @var Marker $marker
          */
         foreach( $this->item->markers() as $marker ) {
-            $windows[] = array(
-                'content'      => $marker->info_window()->content(),
-                'pixel_offset' => $marker->info_window()->pixel_offset(),
-                'position'     => $marker->info_window()->position(),
-                'max_width'    => $marker->info_window()->max_width(),
+            $info_window = $marker->info_window();
+            $windows[]   = array(
+                'content'      => $info_window->content(),
+                'pixel_offset' => $info_window->pixel_offset(),
+                'position'     => $info_window->position(),
+                'max_width'    => $info_window->max_width(),
             );
         }
 
