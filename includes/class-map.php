@@ -10,10 +10,14 @@ namespace Clubdeuce\WPLib\Components\GoogleMaps;
  * @property Map_View  $view
  * @mixin    Map_Model
  * @mixin    Map_View
- * @method   void  add_marker( $marker )
- * @method   array center()
+ * @method   void     add_marker( $marker )
+ * @method   void     add_markers( $markers )
+ * @method   array    center()
+ * @method   string   height()
+ * @method   string   html_id()
  * @method   Marker[] markers()
- * @method   int   zoom()
+ * @method   string   width()
+ * @method   int      zoom()
  */
 class Map extends \WPLib_Item_Base {
 
