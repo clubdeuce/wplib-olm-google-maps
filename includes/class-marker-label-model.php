@@ -31,14 +31,14 @@ class Marker_Label_Model extends \WPLib_Model_Base {
     /**
      * @var null|string
      */
-    protected $_text = null;
+    protected $_text = '';
 
     /**
      * @return string
      */
     function color() {
 
-        return $this->_color;
+        return (string)$this->_color;
 
     }
 
@@ -47,7 +47,7 @@ class Marker_Label_Model extends \WPLib_Model_Base {
      */
     function font_family() {
 
-        return $this->_font_family;
+        return (string)$this->_font_family;
 
     }
 
@@ -56,7 +56,7 @@ class Marker_Label_Model extends \WPLib_Model_Base {
      */
     function font_size() {
 
-        return $this->_font_size;
+        return (string)$this->_font_size;
 
     }
 
@@ -65,7 +65,7 @@ class Marker_Label_Model extends \WPLib_Model_Base {
      */
     function font_weight() {
 
-        return $this->_font_weight;
+        return (string)$this->_font_weight;
 
     }
 
@@ -74,7 +74,7 @@ class Marker_Label_Model extends \WPLib_Model_Base {
      */
     function text() {
 
-        return $this->_text;
+        return (string)$this->_text;
 
     }
 
@@ -88,7 +88,7 @@ class Marker_Label_Model extends \WPLib_Model_Base {
     }
 
     /**
-     * @return array
+     * @return string|array
      */
     function options() {
 
@@ -103,6 +103,10 @@ class Marker_Label_Model extends \WPLib_Model_Base {
         $args = array_filter( $args, function( $value ) {
             return ! is_null( $value );
         } );
+
+        if ( empty( $args['text'] ) ) {
+            $args = '';
+        }
 
         return $args;
 
