@@ -73,7 +73,7 @@ class Geocoder {
     /**
      * Convert the response body into an a Location object
      *
-     * @param  array $response
+     * @param  array $results
      * @return Location
      */
     private function _make_location( $results ) {
