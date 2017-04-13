@@ -47,7 +47,7 @@ class Marker_Model extends \WPLib_Model_Base {
         $args = wp_parse_args( $args, array(
             'address' => '',
             'info_window' => new Info_Window(),
-            'label'   => null,
+            'label'   => new Marker_Label(),
             'title'   => '',
         ) );
 
