@@ -82,6 +82,7 @@ class Geocoder {
             'address'           => $results['formatted_address'],
             'formatted_address' => $results['formatted_address'],
             'state'             => self::_get_state_from_results( $results ),
+            'zip_code'          => self::_get_zip_from_results( $results ),
             'latitude'          => $results['geometry']['location']['lat'],
             'longitude'         => $results['geometry']['location']['lng'],
             'place_id'          => $results['place_id'],
@@ -100,6 +101,16 @@ class Geocoder {
     private function _get_state_from_results( $results ) {
 
         return self::_get_value_from_results( 'administrative_area_level_1', $results );
+
+    }
+
+    /**
+     * @param  array $results
+     * @return string
+     */
+    private function _get_zip_from_results( $results ) {
+
+        return self::_get_value_from_results( 'postal_code', $results );
 
     }
 
