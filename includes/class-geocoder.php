@@ -81,7 +81,7 @@ class Geocoder {
         $response = new Location( array(
             'address'           => $results['formatted_address'],
             'formatted_address' => $results['formatted_address'],
-            'state'             => isset( $results['address_components'][4] ) ? $results['address_components'][4]['short_name'] : '',
+            'state'             => self::_get_state_from_results( $results ),
             'latitude'          => $results['geometry']['location']['lat'],
             'longitude'         => $results['geometry']['location']['lng'],
             'place_id'          => $results['place_id'],
@@ -93,6 +93,37 @@ class Geocoder {
 
     }
 
+    /**
+     * @param  array  $results
+     * @return string
+     */
+    private function _get_state_from_results( $results ) {
+
+        return self::_get_value_from_results( 'administrative_area_level_1', $results );
+
+    }
+
+    /**
+     * @param  string $value
+     * @param  array  $results
+     * @return string
+     */
+    private function _get_value_from_results( $value, $results ) {
+
+        $result_value = '';
+
+        if ( isset( $results['address_components'] ) ) {
+            foreach ( $results['address_components'] as $component ) {
+                if ( $component['types'][0] === $value ) {
+                    $result_value = $component['short_name'];
+                    break;
+                }
+            }
+        }
+
+        return $result_value;
+
+    }
 
     /**
      * @param  string $url
