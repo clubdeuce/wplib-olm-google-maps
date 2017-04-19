@@ -97,13 +97,17 @@ class Google_Maps extends \WPLib_Module_Base {
         wp_register_script('google-maps', "https://maps.google.com/maps/api/js?v=3&key={$key}", false, '3.0', true );
         wp_register_script('map-control', $source, array( 'jquery', 'google-maps' ), '0.1.2', true );
 
-        $conditions = array_map( function( &$function ) {
-            return is_callable( $function ) ? call_user_func( $function ) : $function;
-        }, static::$_script_conditions );
+        $conditions = array_map( array( __CLASS__, '_evaluate_condition' ), static::$_script_conditions );
 
         if ( in_array( true, $conditions ) ) {
             wp_enqueue_script( 'map-control' );
         }
+
+    }
+
+    static function script_conditions() {
+
+        return static::$_script_conditions;
 
     }
 
@@ -134,6 +138,22 @@ class Google_Maps extends \WPLib_Module_Base {
         ) );
 
         return sprintf( 'https://maps.google.com/maps?saddr=%1$s&daddr=%2$s', urlencode( $args['start'] ), urlencode( $destination ) );
+    }
+
+    /**
+     * @param  string|\Closure $callable
+     * @return bool
+     */
+    private static function _evaluate_condition( $callable ) {
+
+        $result = false;
+
+        if ( is_callable( $callable ) ) {
+            $result = call_user_func( $callable );
+        }
+
+        return $result;
+
     }
 
 }
