@@ -5,7 +5,8 @@ php:
   - 7.1
 
 env:
-  - WP_VERSION="4.6.1"
+  - WP_VERSION="4.7.2"
+  - WP_VERSION="4.7.3"
 
 mysql:
   database: test_db
