@@ -41,6 +41,9 @@ class TestCase extends \WP_UnitTestCase {
     {
         $reflection = new \ReflectionMethod( $class, $method );
         $reflection->setAccessible( true );
+        if (is_string($class)) {
+            $class = null;
+        }
         return $reflection->invoke( $class );
     }
 
@@ -54,6 +57,9 @@ class TestCase extends \WP_UnitTestCase {
     {
         $reflection = new \ReflectionMethod( $class, $method );
         $reflection->setAccessible( true );
+        if (is_string($class)) {
+            $class = null;
+        }
         return $reflection->invoke( $class, $args );
     }
 }
