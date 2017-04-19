@@ -29,6 +29,16 @@ class Marker_Model extends \WPLib_Model_Base {
     protected $_label;
 
     /**
+     * @var double
+     */
+    protected $_latitude = null;
+
+    /**
+     * @var double
+     */
+    protected $_longitude;
+
+    /**
      * @var Location|\WP_Error
      */
     protected $_location;
@@ -45,10 +55,12 @@ class Marker_Model extends \WPLib_Model_Base {
     function __construct( $args = array() ) {
 
         $args = wp_parse_args( $args, array(
-            'address' => '',
+            'address'     => '',
             'info_window' => new Info_Window(),
-            'label'   => new Marker_Label(),
-            'title'   => '',
+            'label'       => new Marker_Label(),
+            'title'       => '',
+            'latitude'    => null,
+            'longitude'   => null,
         ) );
 
         parent::__construct( $args );
@@ -81,11 +93,11 @@ class Marker_Model extends \WPLib_Model_Base {
      * @return double
      */
     function latitude() {
-        $latitude = 0;
-        if ( ! is_wp_error( $this->location() ) ) {
-            $latitude = $this->location()->latitude();
+
+        if ( is_null( $this->_latitude ) && ! is_wp_error( $this->location() ) ) {
+            $this->_latitude =$this->location()->latitude();
         }
-        return $latitude;
+        return doubleval( $this->_latitude );
     }
 
     /**
@@ -102,11 +114,11 @@ class Marker_Model extends \WPLib_Model_Base {
      * @return double
      */
     function longitude() {
-        $longitude = 0;
-        if ( ! is_wp_error( $this->location() ) ) {
-            $longitude = $this->location()->longitude();
+
+        if ( is_null( $this->_longitude ) && ! is_wp_error( $this->location() ) ) {
+            $this->_longitude = doubleval( $this->location()->longitude() );
         }
-        return $longitude;
+        return doubleval( $this->_longitude );
     }
 
     /**
@@ -136,7 +148,7 @@ class Marker_Model extends \WPLib_Model_Base {
         $args = array_merge( $args, $this->extra_args );
 
         $args = wp_parse_args( $args, array(
-            'position' => array( 'lat' => $this->latitude(), 'lng' => $this->longitude() ),
+            'position' => $this->position(),
             'label'    => $this->label()->options(),
             'title'    => $this->title(),
         ) );
@@ -155,4 +167,5 @@ class Marker_Model extends \WPLib_Model_Base {
 
         return $this->_geocoder;
     }
+
 }
