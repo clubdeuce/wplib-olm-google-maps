@@ -64,8 +64,8 @@ class TestGeocoder extends TestCase {
         $this->assertInstanceOf('\Clubdeuce\WPLib\Components\GoogleMaps\Location', $location);
         $this->assertEquals('1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA', $location->address());
         $this->assertEquals('1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA', $location->formatted_address());
-        $this->assertEquals(37.422366400000001, $location->latitude());
-        $this->assertEquals(-122.084406, $location->longitude());
+        $this->assertInternalType('double', $location->latitude());
+        $this->assertInternalType('double', $location->longitude());
         $this->assertEquals('ChIJ2eUgeAK6j4ARbn5u_wAGqWA', $location->place_id());
         $this->assertInternalType('array', $location->viewport());
         $this->assertArrayHasKey('northeast', $location->viewport());
@@ -73,12 +73,12 @@ class TestGeocoder extends TestCase {
         $this->assertInternalType('array', $location->viewport()['northeast']);
         $this->assertArrayHasKey('lat', $location->viewport()['northeast']);
         $this->assertArrayHasKey('lng', $location->viewport()['northeast']);
-        $this->assertEquals(37.423715380291497, $location->viewport()['northeast']['lat']);
-        $this->assertEquals(-122.08305701970851, $location->viewport()['northeast']['lng']);
+        $this->assertInternalType('double', $location->viewport()['northeast']['lat']);
+        $this->assertInternalType('double', $location->viewport()['northeast']['lng']);
         $this->assertInternalType('array', $location->viewport()['southwest']);
         $this->assertArrayHasKey('lat', $location->viewport()['southwest']);
         $this->assertArrayHasKey('lng', $location->viewport()['southwest']);
-        $this->assertEquals(37.421017419708512, $location->viewport()['southwest']['lat']);
-        $this->assertEquals(-122.0857549802915, $location->viewport()['southwest']['lng']);
+        $this->assertInternalType('double', $location->viewport()['southwest']['lat']);
+        $this->assertInternalType('double', $location->viewport()['southwest']['lng']);
     }
 }
