@@ -187,7 +187,13 @@ class Google_Maps extends \WPLib_Module_Base {
      */
     static function source_url() {
 
-        return self::$_source_url;
+        $url = self::$_source_url;
+
+        if ( is_ssl() ) {
+            $url = preg_replace( '#^https*:\/\/([a-zA-z0-9\.]*)#', 'https://$1', $url );
+        }
+
+        return $url;
 
     }
 
