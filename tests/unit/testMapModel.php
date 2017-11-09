@@ -16,7 +16,7 @@ class testMapModel extends TestCase {
     /**
      * @var array
      */
-    private $_center = array( 'lat' => 100, 'lng' => -100 );
+    private $_center = array( 'lat' => 100.23435532, 'lng' => -100.1234642345325 );
 
     /**
      * @var Map_Model
@@ -79,5 +79,24 @@ class testMapModel extends TestCase {
      */
     public function testZoom() {
         $this->assertEquals(12, $this->_model->zoom());
+    }
+
+	/**
+	 * @covers ::make_args
+	 */
+    public function testMakeArgs() {
+
+    	$args = $this->_model->make_args();
+
+	    $this->assertInternalType('array', $args);
+	    $this->assertArrayHasKey('center', $args);
+	    $this->assertArrayHasKey('zoom', $args);
+	    $this->assertInternalType('array', $args['center']);
+	    $this->assertInternalType('integer', $args['zoom']);
+	    $this->assertArrayHasKey('lat', $args['center']);
+	    $this->assertArrayHasKey('lat', $args['center']);
+	    $this->assertInternalType('float', $args['center']['lat']);
+	    $this->assertInternalType('float', $args['center']['lng']);
+
     }
 }

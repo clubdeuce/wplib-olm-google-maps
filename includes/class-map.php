@@ -18,16 +18,8 @@ namespace Clubdeuce\WPLib\Components\GoogleMaps;
  * @method   Marker[] markers()
  * @method   string   width()
  * @method   int      zoom()
+ * @method   array    make_args()
  */
 class Map extends \WPLib_Item_Base {
 
-    /**
-     * @return array
-     */
-    function make_args() {
-        return array(
-            'center' => $this->center(),
-            'zoom'   => (int)$this->zoom(),
-        );
-    }
 }

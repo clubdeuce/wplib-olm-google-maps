@@ -118,4 +118,16 @@ class Map_Model extends \WPLib_Model_Base {
 
     }
 
+	/**
+	 * @return array
+	 */
+	function make_args() {
+
+		return array(
+			'center' => $this->center(),
+			'zoom'   => (int)$this->zoom()
+		);
+
+	}
+
 }
