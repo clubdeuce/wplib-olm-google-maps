@@ -26,3 +26,7 @@ before_script:
   - sed -i 's/yourpasswordhere//' ${WP_TESTS_DIR}/wp-tests-config.php
 
 script: ./vendor/bin/phpunit -c ./tests/phpunit.xml.dist
+
+after_script:
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - php ocular.phar code-coverage:upload --format=php-clover clover.xml
