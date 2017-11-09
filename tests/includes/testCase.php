@@ -62,4 +62,13 @@ class TestCase extends \WP_UnitTestCase {
         }
         return $reflection->invoke( $class, $args );
     }
+
+	/**
+	 * @return string
+	 */
+    public function get_sample_response() {
+
+    	return file_get_contents( __DIR__ . '/geocoder-response.json' );
+
+    }
 }

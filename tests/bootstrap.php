@@ -1,10 +1,7 @@
 <?php
-define('VENDOR_DIRECTORY', dirname(__DIR__) . '/vendor');
-define('TEST_INCLUDES_DIR', dirname(__FILE__) . '/includes');
-
-if (! file_exists( dirname(__DIR__) . '/build' ) ) {
-    mkdir(dirname(__DIR__) . '/build');
-}
+define('SRC_DIR', dirname(__DIR__));
+define('VENDOR_DIRECTORY', SRC_DIR . '/vendor');
+define('TEST_INCLUDES_DIR', SRC_DIR . '/includes');
 
 require_once getenv( 'WP_TESTS_DIR' ) . '/tests/phpunit/includes/functions.php';
 require getenv( 'WP_TESTS_DIR' ) . '/tests/phpunit/includes/bootstrap.php';
