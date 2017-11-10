@@ -2,7 +2,9 @@ var gmMaps = {};
 var geocoder = new google.maps.Geocoder;
 
 jQuery(document).ready(function($){
-   userLocation();
+  if ('https' == window.location.protocol) {
+      userLocation();
+  }
 });
 
 /**
