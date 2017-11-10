@@ -7,6 +7,15 @@
 class RoboFile extends \Robo\Tasks
 {
     // define public methods as commands
+
+	function scripts() {
+
+		$this->taskMinify('assets/maps.js')
+			->to('dist/scripts/maps.min.js')
+			->run();
+
+	}
+
 	function tests()
 	{
 
