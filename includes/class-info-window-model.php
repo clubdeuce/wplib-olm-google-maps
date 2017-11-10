@@ -2,6 +2,10 @@
 
 namespace Clubdeuce\WPLib\Components\GoogleMaps;
 
+/**
+ * Class Info_Window_Model
+ * @package Clubdeuce\WPLib\Components\GoogleMaps
+ */
 class Info_Window_Model extends \WPLib_Model_Base {
 
     /**
