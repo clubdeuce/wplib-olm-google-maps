@@ -16,7 +16,7 @@ class Info_Window_Model extends \WPLib_Model_Base {
     /**
      * @var int
      */
-    protected $_pixel_offset;
+    protected $_pixel_offset = 0;
 
     /**
      * @var array

@@ -56,12 +56,18 @@ class Marker_Model extends \WPLib_Model_Base {
 
         $args = wp_parse_args( $args, array(
             'address'     => '',
-            'info_window' => new Info_Window(),
+            'info_window' => '',
             'label'       => new Marker_Label(),
             'title'       => '',
             'latitude'    => null,
             'longitude'   => null,
         ) );
+
+	    if ( empty( $args['info_window'] ) ) {
+	    	$args['info_window'] = new Info_Window( array(
+	    		'position' => array( 'lat' => $args['latitude'], 'lng' => $args['longitude'] ),
+		    ) );
+	    }
 
         parent::__construct( $args );
 
@@ -95,7 +101,7 @@ class Marker_Model extends \WPLib_Model_Base {
     function latitude() {
 
         if ( is_null( $this->_latitude ) && ! is_wp_error( $this->location() ) ) {
-            $this->_latitude =$this->location()->latitude();
+            $this->_latitude = $this->location()->latitude();
         }
         return doubleval( $this->_latitude );
     }
