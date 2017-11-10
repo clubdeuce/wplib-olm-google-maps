@@ -99,4 +99,22 @@ class testMapModel extends TestCase {
 	    $this->assertInternalType('float', $args['center']['lng']);
 
     }
+
+	/**
+	 * @covers ::height
+	 */
+    public function testHeight() {
+
+    	$this->assertEquals('400px', $this->_model->height());
+
+    }
+
+	/**
+	 * @covers ::width
+	 */
+    public function testWidth() {
+
+    	$this->assertEquals('100%', $this->_model->width());
+
+    }
 }
