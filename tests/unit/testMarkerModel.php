@@ -17,11 +17,6 @@ use Mockery\Mock;
 class TestMarkerModel extends TestCase {
 
     /**
-     * @var Location
-     */
-    private $_location;
-
-    /**
      * @var Marker_Model
      */
     private $_model;
@@ -31,24 +26,19 @@ class TestMarkerModel extends TestCase {
      */
     private $_geocoder;
 
+	/**
+	 * @var array
+	 */
+	private $_position = array( 'lat' => 37.4224764, 'lng' => -122.0842499);
 
     public function setUp() {
-        $this->_location = new Location([
-            'address'           => '123 Anywhere Street Anywhere NY',
-            'formatted_address' => '123 Anywhere Street, Anywhere, NY 12345 USA',
-            'latitude'          => 100.12345,
-            'longitude'         => -100.12345,
-            'place_id'          => 'foobar',
-            'types'             => ['foo', 'bar'],
-            'viewport'          => ['northeast' => ['lat' => 100.12346, 'lng' => -100.12344], 'southwest' => ['lat' => 100.12344, 'lng' => -100.12346]],
-        ]);
 
-        $this->_geocoder = \Mockery::mock('\Clubdeuce\WPLib\Components\GoogleMaps\Geocoder');
-        $this->_geocoder->shouldReceive('geocode')->andReturn($this->_location);
+        $this->_geocoder = $this->getMockGeocoder();
 
         $this->_model = new Marker_Model([
             'address'  => $this->_address,
             'geocoder' => $this->_geocoder,
+	        'title'    => 'Sample Title'
         ]);
     }
 
@@ -57,21 +47,14 @@ class TestMarkerModel extends TestCase {
      * @covers ::latitude
      */
     public function testLatitude() {
-        $this->assertEquals(100.12345, $this->_model->latitude());
-    }
-
-    /**
-     * @covers ::location
-     */
-    public function testLocation() {
-        $this->assertEquals($this->_location, $this->_model->location());
+        $this->assertEquals($this->_position['lat'], $this->_model->latitude());
     }
 
     /**
      * @covers ::longitude
      */
     public function testLongitude() {
-        $this->assertEquals(-100.12345, $this->_model->longitude());
+        $this->assertEquals($this->_position['lng'], $this->_model->longitude());
     }
 
     /**
@@ -87,5 +70,31 @@ class TestMarkerModel extends TestCase {
     public function testCreateGeocoder() {
         $marker_model = new Marker_Model();
         $this->assertInstanceOf('\Clubdeuce\WPLib\Components\GoogleMaps\Geocoder',  $this->reflectionMethodInvoke($marker_model, '_geocoder'));
+    }
+
+	/**
+	 * @covers ::position
+	 */
+    public function testPosition() {
+    	$this->assertEquals($this->_position, $this->_model->position());
+    }
+
+	/**
+	 * @covers ::title
+	 */
+    public function testTitle() {
+    	$this->assertEquals('Sample Title', $this->_model->title());
+    }
+
+    public function testMarkerArgs() {
+
+    	$args = $this->_model->marker_args();
+
+	    $this->assertInternalType('array', $args);
+	    $this->assertArrayHasKey('position', $args);
+	    $this->assertArrayHasKey('label', $args);
+	    $this->assertArrayHasKey('title', $args);
+	    $this->assertEquals($this->_position, $args['position']);
+	    $this->assertEquals('Sample Title', $args['title']);
     }
 }

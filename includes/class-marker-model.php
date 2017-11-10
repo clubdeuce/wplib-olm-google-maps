@@ -161,7 +161,7 @@ class Marker_Model extends \WPLib_Model_Base {
      * @return Geocoder
      */
     private function _geocoder() {
-        if (! is_object( $this->_geocoder ) ) {
+        if (! is_a( $this->_geocoder, '\Clubdeuce\WPLib\Components\GoogleMaps\Geocoder' ) ) {
             $this->_geocoder = new Geocoder();
         }
 
