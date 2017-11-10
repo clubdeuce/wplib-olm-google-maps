@@ -9,5 +9,5 @@ A Google Maps component module for [WPLib](https://github.com/wplib/wplib)
 
 _*Please Note*_: The `master` branch is unstable. Be sure to use a tagged [release](https://github.com/clubdeuce/wplib-olm-google-maps/releases).
 
-# Building Assets
+## Building Assets
 This project is built using [Robo](https://robo.li).

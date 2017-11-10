@@ -10,6 +10,11 @@ class Google_Maps extends \WPLib_Module_Base {
 
     const INSTANCE_CLASS = 'Clubdeuce\WPLib\Components\GoogleMaps\Map';
 
+	/**
+	 * @var string
+	 */
+	protected static $_version = '0.1.5';
+
     /**
      * @var string
      */
@@ -108,7 +113,7 @@ class Google_Maps extends \WPLib_Module_Base {
         }
 
         wp_register_script('google-maps', "https://maps.google.com/maps/api/js?v=3&key={$key}", false, '3.0', true );
-        wp_register_script('map-control', $source, array( 'jquery', 'google-maps' ), '0.1.2', true );
+        wp_register_script('map-control', $source, array( 'jquery', 'google-maps' ), self::version(), true );
 
         $conditions = array_map( array( __CLASS__, '_evaluate_condition' ), static::$_script_conditions );
 
@@ -194,6 +199,12 @@ class Google_Maps extends \WPLib_Module_Base {
         }
 
         return $url;
+
+    }
+
+    static function version() {
+
+    	return self::$_version;
 
     }
 

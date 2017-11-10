@@ -31,11 +31,13 @@ function generate_map(mapId, mapParams, mapMarkers, infoWindows) {
     // Add the position of the marker to the bounds object
     bounds.extend(object.position);
 
-    // Add the info box open click listener
-    marker.addListener('click', function () {
-      infoWindow.setContent(infoWindows[key].content);
-      infoWindow.open(map, marker);
-    });
+    // Add the info box open click listener only if there is info window content
+    if (infoWindows[key].content.trim()) {
+      marker.addListener('click', function () {
+        infoWindow.setContent(infoWindows[key].content);
+        infoWindow.open(map, marker);
+      });
+    }
   });
 
   // Add a listener to enforce a minimum zoom level after the map is resized to fit all markers
