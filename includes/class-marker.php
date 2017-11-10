@@ -16,6 +16,7 @@ namespace Clubdeuce\WPLib\Components\GoogleMaps;
  * @method   string       title()
  * @method   Info_Window  info_window()
  * @method   array        marker_args()
+ * @method   Location     location()
  */
 class Marker extends \WPLib_Item_Base {
 
