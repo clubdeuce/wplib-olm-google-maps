@@ -3,6 +3,7 @@
 namespace Clubdeuce\WPLib\Components\GoogleMaps\Tests\UnitTests;
 
 use Clubdeuce\WPLib\Components\GoogleMaps\Geocoder;
+use Clubdeuce\WPLib\Components\GoogleMaps\Location;
 use Clubdeuce\WPLib\Components\GoogleMaps\Tests\TestCase;
 
 /**
@@ -60,9 +61,14 @@ class TestGeocoder extends TestCase {
 
     /**
      * @covers ::_make_location
+     * @covers ::_get_value_from_results
      */
     public function testMakeLocation() {
         $response = json_decode($this->get_sample_response(), true);
+
+	    /**
+	     * @var Location $location
+	     */
         $location = $this->reflectionMethodInvokeArgs($this->_geocoder, '_make_location', $response['results'][0] );
 
         $this->assertInstanceOf('\Clubdeuce\WPLib\Components\GoogleMaps\Location', $location);
@@ -84,6 +90,8 @@ class TestGeocoder extends TestCase {
         $this->assertArrayHasKey('lng', $location->viewport()['southwest']);
         $this->assertEquals(37.4211274197085, $location->viewport()['southwest']['lat']);
         $this->assertEquals(-122.0855988802915, $location->viewport()['southwest']['lng']);
+	    $this->assertEquals('CA', $location->state());
+	    $this->assertEquals('94043', $location->zip_code());
     }
 
     /**
