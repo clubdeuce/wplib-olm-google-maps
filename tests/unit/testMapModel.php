@@ -117,4 +117,17 @@ class testMapModel extends TestCase {
     	$this->assertEquals('100%', $this->_model->width());
 
     }
+
+	/**
+	 * @covers ::html_id
+	 */
+    public function testHtmlId() {
+
+    	$id = $this->_model->html_id();
+
+    	$this->assertInternalType('string', $id);
+	    $this->assertStringStartsWith('map-', $id);
+
+    }
+
 }
