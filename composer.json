@@ -12,8 +12,24 @@
 			"role" :  "DevOp and Developer"
 		}
 	],
+    "repositories": [
+      {
+        "type": "composer",
+        "url": "https://wpackagist.org"
+      },
+      {
+        "type": "git",
+        "url": "https://github.com/wplib/wplib.git"
+      },
+      {
+        "type": "git",
+        "url": "https://github.com/clubdeuce/wp-google-maps.git"
+      }
+    ],
 	"require": {
-		"php": ">=5.4.0"
+		"php": ">=5.4.0",
+        "clubdeuce/wp-google-maps": "dev-master"
+
 	},
 	"require-dev": {
 		"phpunit/phpunit": "5.6.2",
