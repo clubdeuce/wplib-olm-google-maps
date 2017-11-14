@@ -1,55 +1,62 @@
 {
-	"name": "clubdeuce/wplib-olm-google-maps",
-	"type": "library",
-	"description": "Google Maps component for WPLib.",
-	"keywords": [ "wordpress", "php", "library", "wplib", "modules", "google maps", "maps" ],
-	"homepage": "http://github.com/clubdeuce/wplib-olm-google-maps",
- 	"license": "GPL-2.0+",
-	"authors": [
-		{
-			"name": "Daryl Lozupone",
-			"email": "daryl@clubdeuce.net",
-			"role" :  "Developer"
-		}
-	],
-    "repositories": [
-      {
-        "type": "composer",
-        "url": "https://wpackagist.org"
-      },
-      {
-        "type": "git",
-        "url": "https://github.com/wplib/wplib.git"
-      },
-      {
-        "type": "git",
-        "url": "https://github.com/clubdeuce/wp-google-maps.git"
-      }
-    ],
-	"require": {
-		"php": ">=5.4.0",
-        "clubdeuce/wp-google-maps": "~0.1"
-
-	},
-	"require-dev": {
-        "composer/installers": "dev-master",
-        "johnpbloch/wordpress": "4.8.3",
-		"phpunit/phpunit": "5.6.2",
-		"mockery/mockery": "0.9.5",
-		"wplib/wplib": "0.13.4",
-		"consolidation/robo": "^1.1",
-		"patchwork/jsqueeze": "^2.0",
-		"natxet/CssMin": "~3.0"
-	},
-	"autoload": {
-		"psr-0": {
-          "Clubdeuce\\WPLib\\Components\\GoogleMaps": "includes/",
-          "Clubdeuce\\WPLib\\Components\\": "./"
-        }
-	},
-	"support": {
-		"issues": "https://github.com/clubdeuce/wplib-olm-google-maps/issues",
-		"source":"https://github.com/clubdeuce/wplib-olm-google-maps",
-		"docs": "https://github.com/clubdeuce/wplib-olm-google-maps/wiki"
-	}
+  "name": "clubdeuce/wplib-olm-google-maps",
+  "type": "library",
+  "description": "Google Maps component for WPLib.",
+  "keywords": [
+    "wordpress",
+    "php",
+    "library",
+    "wplib",
+    "modules",
+    "google maps",
+    "maps"
+  ],
+  "homepage": "http://github.com/clubdeuce/wplib-olm-google-maps",
+  "license": "GPL-2.0+",
+  "authors": [
+    {
+      "name": "Daryl Lozupone",
+      "email": "daryl@clubdeuce.net",
+      "role": "Developer"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org"
+    },
+    {
+      "type": "git",
+      "url": "https://github.com/wplib/wplib.git"
+    },
+    {
+      "type": "git",
+      "url": "https://github.com/clubdeuce/wp-google-maps.git"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "clubdeuce/wp-google-maps": "~0.1"
+  },
+  "require-dev": {
+    "composer/installers": "dev-master",
+    "johnpbloch/wordpress": "4.8.3",
+    "phpunit/phpunit": "5.6.2",
+    "mockery/mockery": "0.9.5",
+    "wplib/wplib": "0.13.4",
+    "consolidation/robo": "^1.1",
+    "patchwork/jsqueeze": "^2.0",
+    "natxet/CssMin": "~3.0"
+  },
+  "autoload": {
+    "classmap": [
+      "component-google-maps.php",
+      "includes"
+    ]
+  },
+  "support": {
+    "issues": "https://github.com/clubdeuce/wplib-olm-google-maps/issues",
+    "source": "https://github.com/clubdeuce/wplib-olm-google-maps",
+    "docs": "https://github.com/clubdeuce/wplib-olm-google-maps/wiki"
+  }
 }
