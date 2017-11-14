@@ -1,6 +1,7 @@
 <?php
 namespace Clubdeuce\WPLib\Components;
 
+require_once 'vendor/autoload.php';
 
 use Clubdeuce\WPLib\Components\GoogleMaps\Geocoder;
 use Clubdeuce\WPLib\Components\GoogleMaps\Map;

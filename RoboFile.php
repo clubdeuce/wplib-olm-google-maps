@@ -8,6 +8,12 @@ class RoboFile extends \Robo\Tasks
 {
     // define public methods as commands
 
+	function hello($opts = ['who' => 'unknown'])
+	{
+		print_r($opts);
+		$this->say("Hello, " . $opts['who']);
+	}
+
 	function scripts() {
 
 		$this->taskMinify('assets/maps.js')
@@ -33,8 +39,9 @@ class RoboFile extends \Robo\Tasks
 	function phpunit()
 	{
 		$this->taskPhpUnit('vendor/bin/phpunit')
-		     ->configFile('tests/phpunit.xml.dist')
-		     ->run();
+			->configFile('tests/phpunit.xml.dist')
+			->envVars(array('WP_TESTS_DIR' => 'wp-tests/4.8.3'))
+			->run();
 	}
 
 	private function setTestConfig()

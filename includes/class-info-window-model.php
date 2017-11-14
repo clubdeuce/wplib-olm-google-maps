@@ -8,60 +8,19 @@ namespace Clubdeuce\WPLib\Components\GoogleMaps;
  */
 class Info_Window_Model extends \WPLib_Model_Base {
 
-    /**
-     * @var string
-     */
-    protected $_content = '';
+	/**
+	 * @var \Clubdeuce\WPGoogleMaps\Info_Window
+	 */
+	protected $_info_window;
 
-    /**
-     * @var int
-     */
-    protected $_pixel_offset = 0;
+	function __construct( $args = array() ) {
 
-    /**
-     * @var array
-     */
-    protected $_position;
+		$args = wp_parse_args( $args, array(
+			'info_window' => new \Clubdeuce\WPGoogleMaps\Info_Window( $args ),
+		) );
 
-    /**
-     * @var int
-     */
-    protected $_max_width;
+		parent::__construct( $args );
 
-    /**
-     * @return string
-     */
-    function content() {
-
-        return $this->_content;
-
-    }
-
-    /**
-     * @return int
-     */
-    function pixel_offset() {
-
-        return $this->_pixel_offset;
-
-    }
-
-    /**
-     * @return array
-     */
-    function position() {
-
-        return $this->_position;
-
-    }
-
-    /**
-     * @return int
-     */
-    function max_width() {
-
-        return $this->_max_width;
-
-    }
+	}
 
 }
