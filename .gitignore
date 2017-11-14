@@ -1,4 +1,5 @@
 /vendor/
 phpunit.xml
 /wp-tests
+/wordpress/
 composer.lock
