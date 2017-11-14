@@ -8,8 +8,8 @@
 	"authors": [
 		{
 			"name": "Daryl Lozupone",
-			"email": "daryl@newclarity.net",
-			"role" :  "DevOp and Developer"
+			"email": "daryl@clubdeuce.net",
+			"role" :  "Developer"
 		}
 	],
     "repositories": [
@@ -32,6 +32,8 @@
 
 	},
 	"require-dev": {
+        "composer/installers": "dev-master",
+        "johnpbloch/wordpress": "4.8.3",
 		"phpunit/phpunit": "5.6.2",
 		"mockery/mockery": "0.9.5",
 		"wplib/wplib": "0.13.4",
@@ -40,12 +42,13 @@
 		"natxet/CssMin": "~3.0"
 	},
 	"autoload": {
-		"psr-0": { "Clubdeuce\\WPLib\\Components\\": "includes/" },
-		"files": [ "component-google-maps.php" ]
+		"psr-0": {
+          "Clubdeuce\\WPLib\\Components\\GoogleMaps": "includes/",
+          "Clubdeuce\\WPLib\\Components\\": "./"
+        }
 	},
 	"support": {
 		"issues": "https://github.com/clubdeuce/wplib-olm-google-maps/issues",
-		"forum": "https://wplib.slack.com/",
 		"source":"https://github.com/clubdeuce/wplib-olm-google-maps",
 		"docs": "https://github.com/clubdeuce/wplib-olm-google-maps/wiki"
 	}
