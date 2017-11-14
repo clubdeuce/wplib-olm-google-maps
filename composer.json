@@ -28,7 +28,7 @@
     ],
 	"require": {
 		"php": ">=5.4.0",
-        "clubdeuce/wp-google-maps": "dev-master"
+        "clubdeuce/wp-google-maps": "~0.1"
 
 	},
 	"require-dev": {
