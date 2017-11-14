@@ -24,7 +24,8 @@
 		"natxet/CssMin": "~3.0"
 	},
 	"autoload": {
-		"psr-0": { "Clubdeuce\\WPLib\\Components\\": "includes/" }
+		"psr-0": { "Clubdeuce\\WPLib\\Components\\": "includes/" },
+		"files": [ "component-google-maps.php" ]
 	},
 	"support": {
 		"issues": "https://github.com/clubdeuce/wplib-olm-google-maps/issues",
