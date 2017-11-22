@@ -39,11 +39,11 @@ class TestMap extends TestCase {
 		$info->set_pixel_offset(12);
 
 		$this->_map = new Map(array(
-			'center' => array('lat' => 100, 'lng' => -100),
-			'zoom'   => 4
+			'center'  => array('lat' => 100, 'lng' => -100),
+			'zoom'    => 4,
+			'html_id' => 'foo-map-id'
 		));
 
-		$this->_map->add_marker($marker);
 		$this->_map->add_marker($marker);
 		parent::setUp();
 	}
@@ -102,5 +102,17 @@ class TestMap extends TestCase {
 		$this->assertEquals('Foo Content', $window->content());
 		$this->assertEquals(12, $window->pixel_offset());
 		$this->assertEquals(200, $window->max_width());
+	}
+
+	/**
+	 * @coversNothing
+	 */
+	public function testTheMap() {
+		ob_start();
+		$this->_map->the_map();
+		$output = ob_get_clean();
+
+		$this->assertRegExp('#^<div id="foo-map-id"#', $output);
+		$this->assertRegExp('#class="wp-google-map *.*?"#', $output);
 	}
 }
