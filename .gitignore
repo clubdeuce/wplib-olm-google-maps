@@ -1,4 +1,5 @@
 /vendor/
+reports
 phpunit.xml
 /wp-tests
 /wordpress/

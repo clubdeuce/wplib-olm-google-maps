@@ -22,4 +22,19 @@ namespace Clubdeuce\WPLib\Components\GoogleMaps;
  */
 class Map extends \WPLib_Item_Base {
 
+	/**
+	 * Map_Model constructor.
+	 *
+	 * @param array $args
+	 */
+	function __construct( $args = array() ) {
+
+		$args = wp_parse_args( $args, array(
+			'map' => new \Clubdeuce\WPGoogleMaps\Map( $args ),
+		) );
+
+		parent::__construct( $args );
+
+	}
+
 }

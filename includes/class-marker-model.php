@@ -1,12 +1,15 @@
 <?php
 
 namespace Clubdeuce\WPLib\Components\GoogleMaps;
+use Clubdeuce\WPGoogleMaps\Marker;
 
 /**
  * Class Marker_Model
  * @package Clubdeuce\WPLib\Components\GoogleMaps
+ *
+ * @method \Clubdeuce\WPGoogleMaps\Marker marker()
  */
-class Marker_Model extends \WPLib_Model_Base {
+class Marker_Model extends Model_Base {
 
 	/**
 	 * @var \Clubdeuce\WPGoogleMaps\Marker
@@ -18,35 +21,56 @@ class Marker_Model extends \WPLib_Model_Base {
 	 */
 	function has_marker() {
 
-		$has = false;
+		return $this->_has( '_marker' );
 
-		if ( isset( $this->_marker ) ) {
-			$has = true;
-		}
+	}
 
-		return $has;
+	/**
+	 * @return Location
+	 */
+	function location() {
+
+		return new Location( array( 'location' => $this->marker()->location() ) );
+
+	}
+
+	/**
+	 * @return Marker_Label
+	 */
+	function label() {
+
+		return new Marker_Label( array( 'label' => $this->marker()->label() ) );
+
+	}
+
+	/**
+	 * @return Info_Window
+	 */
+	function info_window() {
+
+		return new Info_Window( array( 'info_window' => $this->marker()->info_window() ) );
 
 	}
 
 	/**
 	 * @param string $method_name
-	 * @param array $arguments
+	 * @param array $args
 	 *
 	 * @return mixed|null
 	 */
-	function __call( $method_name, $arguments ) {
+	function __call( $method_name, $args ) {
 
 		$value = null;
 
 		do {
-			if ( property_exists( $this, "_{$method_name}" ) ) {
-				$property = "_{$method_name}";
-				$value = $this->{$property};
+			$value = parent::__call( $method_name, $args );
+
+			if ( $value ) {
 				break;
 			}
 
 			if ( $this->has_marker() ) {
-				$value = call_user_func_array( array( $this->_marker, $method_name ), $arguments );
+				$value = call_user_func_array( array( $this->marker(), $method_name ), $args );
 				break;
 			}
 		} while ( false );

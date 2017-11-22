@@ -3,11 +3,10 @@
 namespace Clubdeuce\WPLib\Components\GoogleMaps\Tests\Integration;
 
 use Clubdeuce\WPLib\Components\GoogleMaps\Marker;
-use Clubdeuce\WPLib\Components\GoogleMaps\Marker_Model;
 use Clubdeuce\WPLib\Components\GoogleMaps\Tests\TestCase;
 
 /**
- * Class TestMarkerModel
+ * Class TestMarker
  * @package            Clubdeuce\WPLib\Components\GoogleMaps\Tests\Integration
  * @coversDefaultClass Clubdeuce\WPLib\Components\GoogleMaps\Marker_Model
  * @group              Marker
@@ -25,6 +24,7 @@ class TestMarker extends TestCase {
 			'address'  => '1600 Amphitheatre Parkway, Mountain View, CA 94043, USA',
 			'title'    => 'Sample Location'
 		));
+
 		parent::setUp();
 	}
 
@@ -34,7 +34,7 @@ class TestMarker extends TestCase {
 	public function testLocation() {
 		$marker = $this->_marker;
 
-		$this->assertInstanceOf('\Clubdeuce\WPLib\Components\GoogleMaps\Location', $this->_marker->location());
+		$this->assertInstanceOf('\Clubdeuce\WPLib\Components\GoogleMaps\Location', $marker->location());
 		$this->assertInstanceOf('\Clubdeuce\WPLib\Components\GoogleMaps\Marker_Label', $marker->label());
 		$this->assertInternalType('double', $marker->latitude());
 		$this->assertInternalType('double', $marker->longitude());

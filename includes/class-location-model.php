@@ -1,6 +1,7 @@
 <?php
 
 namespace Clubdeuce\WPLib\Components\GoogleMaps;
+use Clubdeuce\WPGoogleMaps\Location;
 
 /**
  * Class Location_Model
@@ -16,52 +17,36 @@ namespace Clubdeuce\WPLib\Components\GoogleMaps;
  * @method  array  type()
  * @method  array  viewport()
  */
-class Location_Model extends \WPLib_Model_Base {
+class Location_Model extends Model_Base {
 
     /**
-     * @var string
+     * @var \Clubdeuce\WPGoogleMaps\Location
      */
-    protected $_address;
+    protected $_location;
 
-    /**
-     * @var string
-     */
-    protected $_formatted_address;
+	/**
+	 * Location_Model constructor.
+	 *
+	 * @param array $args
+	 */
+	function __construct( $args = array() ) {
 
-    /**
-     * @var string
-     */
-    protected $_state;
+		$args = wp_parse_args( $args, array(
+			'location' => new Location( $args ),
+		) );
 
-    /**
-     * @var string
-     */
-    protected $_zip_code;
+		parent::__construct( $args );
 
-    /**
-     * @var float
-     */
-    protected $_latitude;
+	}
 
-    /**
-     * @var string
-     */
-    protected $_location_type;
+	/**
+	 * @return bool
+	 */
+	function has_location() {
 
-    /**
-     * @var float
-     */
-    protected $_longitude;
+		return $this->_has( '_location' );
 
-    /**
-     * @var string
-     */
-    protected $_place_id;
-
-    /**
-     * @var array
-     */
-    protected $_viewport = array();
+	}
 
     /**
      * @param  string $method_name
@@ -70,11 +55,23 @@ class Location_Model extends \WPLib_Model_Base {
     public function __call( $method_name, $args ) {
         $value = null;
 
-        if ( property_exists( $this, "_{$method_name}" ) ) {
-            $property = "_{$method_name}";
-            $value = $this->{$property};
-        }
+	    do {
+
+		    if ( property_exists( $this, "_{$method_name}" ) ) {
+			    $property = "_{$method_name}";
+			    $value = $this->{$property};
+			    break;
+		    }
+
+		    if ( ! isset( $this->_location ) ) {
+		    	break;
+		    }
+
+		    $value = call_user_func_array( array( $this->_location, $method_name ), $args );
+
+	    } while ( false );
 
         return $value;
     }
+
 }

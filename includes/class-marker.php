@@ -21,15 +21,15 @@ namespace Clubdeuce\WPLib\Components\GoogleMaps;
 class Marker extends \WPLib_Item_Base {
 
 	/**
-	 * Marker constructor.
+	 * Marker_Model constructor.
 	 *
 	 * @param array $args
 	 */
 	function __construct( $args = array() ) {
 
-		$args = wp_parse_args( $args );
-
-		$args['marker'] = new \Clubdeuce\WPGoogleMaps\Marker( $args );
+		$args = wp_parse_args( $args, array(
+			'marker' => new \Clubdeuce\WPGoogleMaps\Marker( $args ),
+		) );
 
 		parent::__construct( $args );
 

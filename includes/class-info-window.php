@@ -17,4 +17,19 @@ namespace Clubdeuce\WPLib\Components\GoogleMaps;
  */
 class Info_Window extends \WPLib_Item_Base {
 
+	/**
+	 * Info_Window constructor.
+	 *
+	 * @param array $args
+	 */
+	function __construct( $args = array() ) {
+
+		$args = wp_parse_args( $args, array(
+			'info_window' => new \Clubdeuce\WPGoogleMaps\Info_Window( $args ),
+		) );
+
+		parent::__construct( $args );
+
+	}
+
 }

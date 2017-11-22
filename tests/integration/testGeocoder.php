@@ -3,7 +3,6 @@
 namespace Clubdeuce\WPLib\Components\GoogleMaps\Tests\Integration;
 
 use Clubdeuce\WPLib\Components\GoogleMaps\Geocoder;
-use Clubdeuce\WPLib\Components\GoogleMaps\Location;
 use Clubdeuce\WPLib\Components\GoogleMaps\Tests\TestCase;
 
 /**
@@ -24,39 +23,7 @@ class TestGeocoder extends TestCase {
     }
 
     /**
-     * @covers ::_make_request
-     */
-    public function testMakeRequest() {
-        $url      = $this->reflectionMethodInvokeArgs($this->_geocoder, '_make_url', '1600 Amphitheatre Parkway, Mountain View, CA');
-        $response = $this->reflectionMethodInvokeArgs($this->_geocoder, '_make_request', $url);
-
-        $this->assertInternalType('array', $response);
-    }
-
-    /**
-     * @covers ::_make_request
-     */
-    public function testMakeRequestError404() {
-        $response = $this->reflectionMethodInvokeArgs($this->_geocoder, '_make_request', 'https://maps.googleapis.com/maps/api/geo');
-
-        $this->assertInstanceOf('WP_Error', $response);
-        $this->assertObjectHasAttribute('errors', $response);
-        $this->assertArrayHasKey('404', $response->errors);
-    }
-
-    /**
-     * @covers ::_get_data
-     */
-    public function testGetData() {
-        $url      = $this->reflectionMethodInvokeArgs($this->_geocoder, '_make_url', '1600 Amphitheatre Parkway, Mountain View, CA');
-        $response = $this->reflectionMethodInvokeArgs($this->_geocoder, '_get_data', $url);
-
-        $this->assertInternalType('array', $response);
-    }
-
-    /**
      * @covers ::geocode
-     * @covers ::_make_location
      */
     public function testGeocode() {
         $location = $this->_geocoder->geocode('1600 Amphitheatre Parkway, Mountain View, CA');
@@ -80,4 +47,5 @@ class TestGeocoder extends TestCase {
         $this->assertInternalType('double', $location->viewport()['southwest']['lat']);
         $this->assertInternalType('double', $location->viewport()['southwest']['lng']);
     }
+
 }

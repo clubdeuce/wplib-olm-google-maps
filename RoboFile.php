@@ -40,7 +40,7 @@ class RoboFile extends \Robo\Tasks
 	{
 		$this->taskPhpUnit('vendor/bin/phpunit')
 			->configFile('tests/phpunit.xml.dist')
-			->envVars(array('WP_TESTS_DIR' => 'wp-tests/4.8.3'))
+			->envVars(array('WP_TESTS_DIR' => 'wp-tests'))
 			->run();
 	}
 

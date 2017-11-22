@@ -20,17 +20,17 @@ namespace Clubdeuce\WPLib\Components\GoogleMaps;
 class Marker_Label extends \WPLib_Item_Base {
 
 	/**
-	 * @var \Clubdeuce\WPGoogleMaps\Marker_Label
+	 * Marker_Label constructor.
+	 *
+	 * @param array $args
 	 */
-	protected $_marker_label;
-
 	function __construct( $args = array() ) {
 
-		$args = wp_parse_args( $args, array(
-			'marker_label' => new \Clubdeuce\WPGoogleMaps\Marker_Label( $args ),
+		$temp = wp_parse_args( $args, array(
+			'label' => new \Clubdeuce\WPGoogleMaps\Marker_Label( $args ),
 		) );
 
-		parent::__construct( $args );
+		parent::__construct( $temp );
 
 	}
 
