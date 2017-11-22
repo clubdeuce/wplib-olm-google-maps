@@ -24,14 +24,4 @@ namespace Clubdeuce\WPLib\Components\GoogleMaps;
  */
 class Location extends \WPLib_Item_Base {
 
-	function __construct( $args = array() ) {
-
-		$args = wp_parse_args( $args, array(
-			'location' => new \Clubdeuce\WPGoogleMaps\Location( $args ),
-		) );
-
-		parent::__construct( $args );
-
-
-	}
 }
