@@ -7,6 +7,10 @@ namespace Clubdeuce\WPLib\Components\GoogleMaps;
  * @package Clubdeuce\WPLib\Components\GoogleMaps
  *
  * @method \Clubdeuce\WPGoogleMaps\Info_Window info_window()
+ * @method string content()
+ * @method int    pixel_offset()
+ * @method array  position()
+ * @method int    max_width()
  */
 class Info_Window_Model extends Model_Base {
 
@@ -14,6 +18,21 @@ class Info_Window_Model extends Model_Base {
 	 * @var \Clubdeuce\WPGoogleMaps\Info_Window
 	 */
 	protected $_info_window;
+
+	/**
+	 * Info_Window constructor.
+	 *
+	 * @param array $args
+	 */
+	function __construct( $args = array() ) {
+
+		$args = wp_parse_args( $args, array(
+			'info_window' => new \Clubdeuce\WPGoogleMaps\Info_Window( $args ),
+		) );
+
+		parent::__construct( $args );
+
+	}
 
 	/**
 	 * @return bool
