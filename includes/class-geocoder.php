@@ -1,7 +1,6 @@
 <?php
 
 namespace Clubdeuce\WPLib\Components\GoogleMaps;
-use Clubdeuce\WPLib\Components\Google_Maps;
 
 /**
  * Class Geocoder
@@ -12,13 +11,13 @@ class Geocoder extends \Clubdeuce\WPGoogleMaps\Geocoder {
 	/**
 	 * @param string $address
 	 *
-	 * @return Location
+	 * @return \Clubdeuce\WPGoogleMaps\Location|Location|\WP_Error
 	 */
 	function geocode( $address ) {
 
-		$geocoder = Google_Maps::geocoder();
+		$location = parent::geocode( $address );
 
-		return new Location( array( 'location' => $geocoder->geocode( $address ) ) );
+		return new Location( array( 'location' => $location ) );
 
 	}
 
