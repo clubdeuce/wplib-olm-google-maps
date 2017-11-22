@@ -50,7 +50,7 @@ class Google_Maps extends \WPLib_Module_Base {
     static function make_marker_by_address( $address, $args = array() ) {
 
     	$marker = \Clubdeuce\WPGoogleMaps\Google_Maps::make_marker_by_address( $address, $args );
-    	return new Marker( array( 'marker' => $marker ), $args );
+    	return new Marker( array_merge( array( 'marker' => $marker ), $args ) );
 
     }
 
@@ -64,7 +64,7 @@ class Google_Maps extends \WPLib_Module_Base {
 	static function make_marker_by_position( $lat, $lng, $args = array() ) {
 
 		$marker = \Clubdeuce\WPGoogleMaps\Google_Maps::make_marker_by_position( $lat, $lng, $args );
-		return new Marker( array( 'marker' => $marker ), $args );
+		return new Marker( array_merge( array( 'marker' => $marker ), $args ) );
 
 	}
 }
