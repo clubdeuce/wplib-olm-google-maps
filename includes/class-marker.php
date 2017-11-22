@@ -28,11 +28,12 @@ class Marker extends \WPLib_Item_Base {
 	function __construct( $args = array() ) {
 
 		$args = wp_parse_args( $args, array(
-			'marker' => new \Clubdeuce\WPGoogleMaps\Marker( $args ),
+			'model' => new Marker_Model( array( 'marker' => new \Clubdeuce\WPGoogleMaps\Marker( $args ) ) ),
 		) );
 
 		parent::__construct( $args );
 
 	}
+
 
 }

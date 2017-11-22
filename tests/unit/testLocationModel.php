@@ -9,7 +9,7 @@ use Clubdeuce\WPLib\Components\GoogleMaps\Tests\TestCase;
 
 /**
  * Class TestLocationModel
- * @package            Clubdeuce\WPLib\Components\GoogleMaps\Tests\Integration
+ * @package            Clubdeuce\WPLib\Components\GoogleMaps\Tests\Unit
  * @coversDefaultClass Clubdeuce\WPLib\Components\GoogleMaps\Location_Model
  * @group              Location
  */

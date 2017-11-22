@@ -24,4 +24,19 @@ namespace Clubdeuce\WPLib\Components\GoogleMaps;
  */
 class Location extends \WPLib_Item_Base {
 
+	/**
+	 * Location constructor.
+	 *
+	 * @param array $args
+	 */
+	function __construct( $args = array() ) {
+
+		$args = wp_parse_args( $args, array(
+			'model' => new Location_Model( array( 'location' => new \Clubdeuce\WPGoogleMaps\Location( $args ) ) ),
+		) );
+
+		parent::__construct( $args );
+
+	}
+
 }

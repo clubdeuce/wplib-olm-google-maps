@@ -26,11 +26,11 @@ class Marker_Label extends \WPLib_Item_Base {
 	 */
 	function __construct( $args = array() ) {
 
-		$temp = wp_parse_args( $args, array(
-			'label' => new \Clubdeuce\WPGoogleMaps\Marker_Label( $args ),
+		$args = wp_parse_args( $args, array(
+			'model' => new Marker_Label_Model( array( 'label' => new \Clubdeuce\WPGoogleMaps\Marker_Label( $args ) ) ),
 		) );
 
-		parent::__construct( $temp );
+		parent::__construct( $args );
 
 	}
 

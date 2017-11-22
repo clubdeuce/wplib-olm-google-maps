@@ -1,6 +1,7 @@
 <?php
 
 namespace Clubdeuce\WPLib\Components\GoogleMaps;
+use Clubdeuce\WPGoogleMaps\Info_Window;
 
 /**
  * Class Info_Window_Model
@@ -11,6 +12,8 @@ namespace Clubdeuce\WPLib\Components\GoogleMaps;
  * @method int    pixel_offset()
  * @method array  position()
  * @method int    max_width()
+ *
+ * @mixin Info_Window
  */
 class Info_Window_Model extends Model_Base {
 

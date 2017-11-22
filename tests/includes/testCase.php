@@ -1,6 +1,7 @@
 <?php
 
 namespace Clubdeuce\WPLib\Components\GoogleMaps\Tests;
+
 use Mockery\Mock;
 
 /**
@@ -76,13 +77,9 @@ class TestCase extends \WP_UnitTestCase {
 	/**
 	 * @return Mock
 	 */
-    protected function getMockGeocoder() {
-
-	    /**
-	     * @var Mock $geocoder
-	     */
+    protected function mockGeocoder() {
     	$geocoder = \Mockery::mock('\Clubdeuce\WPLib\Components\GoogleMaps\Geocoder');
-	    $geocoder->shouldReceive('geocode')->andReturn($this->getMockLocation());
+	    $geocoder->shouldReceive('geocode')->andReturn($this->mockLocation());
 
 	    return $geocoder;
     }
@@ -90,10 +87,7 @@ class TestCase extends \WP_UnitTestCase {
 	/**
 	 * @return Mock
 	 */
-    protected function getMockLocation() {
-	    /**
-	     * @var Mock $location
-	     */
+    protected function mockLocation() {
     	$location = \Mockery::mock('\Clubdeuce\WPLib\Components\GoogleMape\Location');
 	    $location->shouldReceive('address')->andReturn('1600 Amphitheatre Parkway, Mountain View, CA 94043, USA');
 	    $location->shouldReceive('formatted_address')->andReturn('1600 Amphitheatre Parkway, Mountain View, CA 94043, USA');
@@ -116,4 +110,65 @@ class TestCase extends \WP_UnitTestCase {
 
 	    return $location;
     }
+
+	/**
+	 * @return \Mockery\MockInterface
+	 */
+    protected function mockLabel() {
+    	$label = \Mockery::mock();
+
+	    $label->shouldReceive('color')->andReturn('black');
+	    $label->shouldReceive('font_family')->andReturn('Arial');
+	    $label->shouldReceive('font_size')->andReturn('12px');
+	    $label->shouldReceive('font_weight')->andReturn(900);
+	    $label->shouldReceive('text')->andReturn('Sample Label Text');
+
+	    return $label;
+    }
+
+	/**
+	 * @return \Mockery\MockInterface
+	 */
+	protected function mockMarker() {
+		$marker = \Mockery::mock();
+
+		$marker->shouldReceive('label')->andReturn($this->mockLabel());
+		$marker->shouldReceive('position')->andReturn(array('lat' => 100, 'lng' => -100));
+		$marker->shouldReceive('title')->andReturn('Sample Title');
+		$marker->shouldReceive('info_window')->andReturn($this->mockInfoWindow());
+
+		return $marker;
+	}
+
+	/**
+	 * @return \Mockery\MockInterface
+	 */
+	protected function mockInfoWindow() {
+		$window = \Mockery::mock();
+
+		$window->shouldReceive('content')->andReturn('Sample Info Window Content');
+		$window->shouldReceive('pixel_offset')->andReturn(12);
+		$window->shouldReceive('position')->andReturn(null);
+		$window->shouldReceive('max_width')->andReturn(null);
+		return $window;
+	}
+
+	/**
+	 * @param array $args
+	 *
+	 * @return \Mockery\MockInterface
+	 */
+	protected function _mock($args = array()) {
+		$mock = \Mockery::mock();
+
+		$args = wp_parse_args($args, array(
+			'foo' => 'bar'
+		));
+
+		foreach ($args as $key => $val) {
+			$mock->shouldReceive($key)->andReturn($val);
+		}
+
+		return $mock;
+	}
 }

@@ -31,8 +31,10 @@ class Location_Model extends Model_Base {
 	 */
 	function __construct( $args = array() ) {
 
+		$location = new Location( $args );
+
 		$args = wp_parse_args( $args, array(
-			'location' => new Location( $args ),
+			'location' => $location,
 		) );
 
 		parent::__construct( $args );

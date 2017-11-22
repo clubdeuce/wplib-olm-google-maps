@@ -30,7 +30,7 @@ class Map extends \WPLib_Item_Base {
 	function __construct( $args = array() ) {
 
 		$args = wp_parse_args( $args, array(
-			'map' => new \Clubdeuce\WPGoogleMaps\Map( $args ),
+			'model' => new Map_Model( array( 'map' => new \Clubdeuce\WPGoogleMaps\Map( $args ) ) ),
 		) );
 
 		parent::__construct( $args );
