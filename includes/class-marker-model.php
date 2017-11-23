@@ -1,7 +1,7 @@
 <?php
 
 namespace Clubdeuce\WPLib\Components\GoogleMaps;
-use Clubdeuce\WPGoogleMaps\Marker;
+use Clubdeuce\WPGoogleMaps\Marker as WPMarker;
 
 /**
  * Class Marker_Model
@@ -12,7 +12,7 @@ use Clubdeuce\WPGoogleMaps\Marker;
 class Marker_Model extends Model_Base {
 
 	/**
-	 * @var \Clubdeuce\WPGoogleMaps\Marker
+	 * @var WPMarker
 	 */
     protected $_marker;
 

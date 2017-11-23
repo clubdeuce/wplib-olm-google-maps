@@ -1,19 +1,19 @@
 <?php
 
 namespace Clubdeuce\WPLib\Components\GoogleMaps;
-use Clubdeuce\WPGoogleMaps\Map;
+use Clubdeuce\WPGoogleMaps\Map as WPMap;
 
 
 /**
  * Class Map_Model
  * @package Clubdeuce\WPLib\Components\GoogleMaps
  *
- * @mixin Map
+ * @mixin WPMap
  */
 class Map_Model extends Model_Base {
 
 	/**
-	 * @var Map
+	 * @var WPMap
 	 */
 	protected $_map;
 
