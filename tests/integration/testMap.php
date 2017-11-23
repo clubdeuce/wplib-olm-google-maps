@@ -67,7 +67,6 @@ class TestMap extends TestCase {
 	}
 
 	/**
-	 * @covers \Clubdeuce\WPLib\Components\GoogleMaps\Map_Model::add_markers
 	 * @covers \Clubdeuce\WPLib\Components\Google_Maps::make_marker_by_address
 	 */
 	public function testMarkerByAddress() {
@@ -82,12 +81,11 @@ class TestMap extends TestCase {
 	}
 
 	/**
-	 * @covers \Clubdeuce\WPLib\Components\GoogleMaps\Map_Model::add_markers
 	 * @covers \Clubdeuce\WPLib\Components\Google_Maps::make_marker_by_position
 	 */
 	public function testMarkerByPosition() {
 		$marker = $this->_map->markers()[1];
-print_r($marker);
+
 		$this->assertInstanceOf(Marker_Label::class, $marker->label());
 		$this->assertInstanceOf(Info_Window::class, $marker->info_window());
 		$this->assertInstanceOf(Location::class, $marker->location());
