@@ -24,7 +24,12 @@ class TestMap extends TestCase {
 	private $_map;
 
 	public function setUp() {
-		$marker = Google_Maps::make_marker_by_position(123.456, -123.456, array('title' => 'Foo Marker Title'));
+		$marker = Google_Maps::make_marker_by_address(
+			'1600 Pennsylvania Avenue NW Washington DC',
+			array('title' => 'The White House')
+		);
+		$marker_2 = Google_Maps::make_marker_by_position(123.456, -123.456);
+
 		$label  = $marker->label();
 		$info   = $marker->info_window();
 
@@ -44,7 +49,7 @@ class TestMap extends TestCase {
 			'html_id' => 'foo-map-id'
 		));
 
-		$this->_map->add_marker($marker);
+		$this->_map->add_markers(array($marker, $marker_2));
 		parent::setUp();
 	}
 
@@ -62,18 +67,32 @@ class TestMap extends TestCase {
 	}
 
 	/**
-	 * @covers \Clubdeuce\WPLib\Components\GoogleMaps\Map::__construct
-	 * @covers \Clubdeuce\WPLib\Components\GoogleMaps\Marker::__construct
+	 * @covers \Clubdeuce\WPLib\Components\GoogleMaps\Map_Model::add_markers
+	 * @covers \Clubdeuce\WPLib\Components\Google_Maps::make_marker_by_address
 	 */
-	public function testMarker() {
+	public function testMarkerByAddress() {
 		$marker = $this->_map->markers()[0];
+
+		$this->assertInstanceOf(Marker_Label::class, $marker->label());
+		$this->assertInstanceOf(Info_Window::class, $marker->info_window());
+		$this->assertInstanceOf(Location::class, $marker->location());
+		$this->assertEquals(38.897663299999998, $marker->latitude());
+		$this->assertEquals(-77.036573899999993, $marker->longitude());
+		$this->assertEquals('The White House', $marker->title());
+	}
+
+	/**
+	 * @covers \Clubdeuce\WPLib\Components\GoogleMaps\Map_Model::add_markers
+	 * @covers \Clubdeuce\WPLib\Components\Google_Maps::make_marker_by_position
+	 */
+	public function testMarkerByPosition() {
+		$marker = $this->_map->markers()[1];
 
 		$this->assertInstanceOf(Marker_Label::class, $marker->label());
 		$this->assertInstanceOf(Info_Window::class, $marker->info_window());
 		$this->assertInstanceOf(Location::class, $marker->location());
 		$this->assertEquals(123.456, $marker->latitude());
 		$this->assertEquals(-123.456, $marker->longitude());
-		$this->assertEquals('Foo Marker Title', $marker->title());
 	}
 
 	/**
@@ -98,7 +117,7 @@ class TestMap extends TestCase {
 		$window = $this->_map->markers()[0]->info_window();
 
 		$this->assertInternalType('array', $window->position());
-		$this->assertEquals(array('lat' => 123.456, 'lng' => -123.456), $window->position());
+		$this->assertEquals(array('lat' => 38.897663299999998, 'lng' => -77.036573899999993), $window->position());
 		$this->assertEquals('Foo Content', $window->content());
 		$this->assertEquals(12, $window->pixel_offset());
 		$this->assertEquals(200, $window->max_width());

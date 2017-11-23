@@ -26,7 +26,11 @@ class TestMarkerModel extends TestCase {
 			'marker' => $this->_mock(array(
 				'label'       => new \stdClass(),
 				'location'    => new \stdClass(),
-				'info_window' => new \stdClass()
+				'info_window' => self::_mock(array(
+					'set_position' => null,
+				)),
+				'latitude'    => 100,
+				'longitude'   => -100,
 			)),
 		));
 		parent::setUp();
