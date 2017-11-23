@@ -38,6 +38,9 @@
     "php": ">=5.4.0",
     "clubdeuce/wp-google-maps": "~0.1"
   },
+  "autoload": {
+    "psr-0": {"Clubdeuce\\WPlib\\Components\\GoogleMaps\\": "includes/"}
+  },
   "require-dev": {
     "composer/installers": "dev-master",
     "johnpbloch/wordpress": "4.8.3",
