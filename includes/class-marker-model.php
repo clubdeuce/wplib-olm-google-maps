@@ -63,8 +63,6 @@ class Marker_Model extends Model_Base {
 	 */
 	function __call( $method_name, $args ) {
 
-		$value = null;
-
 		do {
 			$value = parent::__call( $method_name, $args );
 

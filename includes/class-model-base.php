@@ -29,7 +29,7 @@ class Model_Base extends \WPLib_Model_Base {
 	 * @param string $method_name
 	 * @param array $args
 	 *
-	 * @return null
+	 * @return null|mixed
 	 */
 	function __call( $method_name, $args ) {
 
