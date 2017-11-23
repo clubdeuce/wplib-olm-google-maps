@@ -12,7 +12,7 @@ namespace Clubdeuce\WPLib\Components\GoogleMaps;
  * @method array  position()
  * @method int    max_width()
  *
- * @mixin Info_Window
+ * @mixin \Clubdeuce\WPGoogleMaps\Info_Window
  */
 class Info_Window_Model extends Model_Base {
 

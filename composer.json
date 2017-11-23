@@ -34,6 +34,10 @@
       "url": "https://github.com/clubdeuce/wp-google-maps.git"
     }
   ],
+  "autoload": {
+    "psr-0": {"Clubdeuce\\WPLib\\Components\\GoogleMaps\\": "includes/"},
+    "files": ["component-google-maps.php"]
+  },
   "require": {
     "php": ">=5.4.0",
     "clubdeuce/wp-google-maps": "~0.1"

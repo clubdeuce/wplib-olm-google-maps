@@ -25,6 +25,7 @@ class Google_Maps extends \WPLib_Module_Base {
     static function on_load() {
 
 	    require_once 'vendor/autoload.php';
+	    require_once 'includes/class-model-base.php';
         self::register_helper( '\Clubdeuce\WPGoogleMaps\Google_Maps', __CLASS__ );
 	    \Clubdeuce\WPGoogleMaps\Google_Maps::initialize();
 
