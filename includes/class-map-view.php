@@ -12,7 +12,7 @@ class Map_View extends \WPLib_View_Base {
 
     function the_map() {
 
-        $view = new \Clubdeuce\WPGoogleMaps\Map_View( $this->model() );
+        $view = new \Clubdeuce\WPGoogleMaps\Map_View( $this->model()->map() );
 
 	    $view->the_map();
 
