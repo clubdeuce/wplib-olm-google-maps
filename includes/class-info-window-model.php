@@ -11,8 +11,10 @@ namespace Clubdeuce\WPLib\Components\GoogleMaps;
  * @method int    pixel_offset()
  * @method array  position()
  * @method int    max_width()
- *
- * @mixin \Clubdeuce\WPGoogleMaps\Info_Window
+ * @method void   set_content()
+ * @method void   det_pixel_offset()
+ * @method void   set_position()
+ * @method void   set_max_width()
  */
 class Info_Window_Model extends Model_Base {
 
