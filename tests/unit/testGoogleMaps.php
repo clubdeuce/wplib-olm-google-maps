@@ -57,6 +57,8 @@ class testGoogleMaps extends TestCase {
 		$marker = Google_Maps::make_marker_by_position(123.45, -123.45);
 
 		$this->assertInstanceOf(Marker::class, $marker);
+		$this->assertEquals(123.45, $marker->latitude());
+		$this->assertEquals(-123.45, $marker->longitude());
 
 	}
 }
