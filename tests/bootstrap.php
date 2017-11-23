@@ -18,4 +18,3 @@ require_once VENDOR_DIRECTORY . '/autoload.php';
 require_once VENDOR_DIRECTORY . '/wplib/wplib/wplib.php';
 WPLib::initialize();
 
-\Clubdeuce\WPLib\Components\Google_Maps::initialize();

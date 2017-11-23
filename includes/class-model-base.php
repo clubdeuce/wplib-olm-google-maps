@@ -2,7 +2,6 @@
 
 namespace Clubdeuce\WPLib\Components\GoogleMaps;
 
-if ( ! class_exists( 'Clubdeuce\WPLib\Components\GoogleMaps\Model_Base' ) ):
 /**
  * Class Model_Base
  * @package Clubdeuce\WPLib\Components\GoogleMaps
@@ -47,4 +46,3 @@ class Model_Base extends \WPLib_Model_Base {
 	}
 
 }
-endif;
