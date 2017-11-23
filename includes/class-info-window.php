@@ -15,10 +15,10 @@ namespace Clubdeuce\WPLib\Components\GoogleMaps;
  * @method   int    pixel_offset()
  * @method   array  position()
  * @method   int    max_width()
- * @method   void   set_content()
- * @method   void   det_pixel_offset()
- * @method   void   set_position()
- * @method   void   set_max_width()
+ * @method   void   set_content( $content )
+ * @method   void   set_pixel_offset( $offset )
+ * @method   void   set_position( $position )
+ * @method   void   set_max_width( $max )
  *
  * @link     https://developers.google.com/maps/documentation/javascript/infowindows
  */
