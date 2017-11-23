@@ -48,7 +48,10 @@ class Marker_Model extends Model_Base {
 	 */
 	function info_window() {
 
-		return new Info_Window( array( 'info_window' => $this->marker()->info_window() ) );
+		$window = new Info_Window( array( 'info_window' => $this->marker()->info_window() ) );
+		$window->set_position( array( 'lat' => $this->marker()->latitude(), 'lng' => $this->marker()->longitude()));
+
+		return $window;
 
 	}
 
