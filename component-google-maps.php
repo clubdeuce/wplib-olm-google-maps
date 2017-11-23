@@ -17,7 +17,7 @@ class Google_Maps extends \WPLib_Module_Base {
 	/**
 	 * @var string
 	 */
-	protected static $_version = '0.1.6';
+	protected static $_version = '0.1.7';
 
 	/**
 	 *
