@@ -8,7 +8,9 @@ use Clubdeuce\WPGoogleMaps\Map as WPMap;
  * Class Map_Model
  * @package Clubdeuce\WPLib\Components\GoogleMaps
  *
- * @mixin WPMap
+ * @method map()
+ *
+ * @mixin  WPMap
  */
 class Map_Model extends Model_Base {
 
