@@ -1,7 +1,6 @@
 <?php
 
 namespace Clubdeuce\WPLib\Components\GoogleMaps;
-use Clubdeuce\WPGoogleMaps\Info_Window;
 
 /**
  * Class Info_Window_Model

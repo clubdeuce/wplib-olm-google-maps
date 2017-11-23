@@ -1,7 +1,6 @@
 <?php
 
 namespace Clubdeuce\WPLib\Components\GoogleMaps;
-use Clubdeuce\WPGoogleMaps\Marker_Label;
 
 /**
  * Class Marker_Label_Model

@@ -1,7 +1,7 @@
 <?php
 
 namespace Clubdeuce\WPLib\Components\GoogleMaps;
-use Clubdeuce\WPGoogleMaps\Location;
+use Clubdeuce\WPGoogleMaps\Location as WPLoc;
 
 /**
  * Class Location_Model
@@ -31,7 +31,7 @@ class Location_Model extends Model_Base {
 	 */
 	function __construct( $args = array() ) {
 
-		$location = new Location( $args );
+		$location = new WPLoc( $args );
 
 		$args = wp_parse_args( $args, array(
 			'location' => $location,

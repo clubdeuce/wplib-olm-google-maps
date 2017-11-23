@@ -14,7 +14,25 @@ if ( ! function_exists( 'wplib_define' ) ) {
     wplib_define( 'WPLib_Stability', 'EXPERIMENTAL' );
 }
 require_once VENDOR_DIRECTORY . '/autoload.php';
-
 require_once VENDOR_DIRECTORY . '/wplib/wplib/wplib.php';
+
 WPLib::initialize();
 
+require_once SRC_DIR . '/component-google-maps.php';
+require_once SRC_DIR . '/includes/class-model-base.php';
+require_once SRC_DIR . '/includes/class-geocoder.php';
+require_once SRC_DIR . '/includes/class-info-window.php';
+require_once SRC_DIR . '/includes/class-info-window-model.php';
+require_once SRC_DIR . '/includes/class-info-window-view.php';
+require_once SRC_DIR . '/includes/class-location.php';
+require_once SRC_DIR . '/includes/class-location-model.php';
+require_once SRC_DIR . '/includes/class-location-view.php';
+require_once SRC_DIR . '/includes/class-map.php';
+require_once SRC_DIR . '/includes/class-map-model.php';
+require_once SRC_DIR . '/includes/class-map-view.php';
+require_once SRC_DIR . '/includes/class-marker.php';
+require_once SRC_DIR . '/includes/class-marker-model.php';
+require_once SRC_DIR . '/includes/class-marker-view.php';
+require_once SRC_DIR . '/includes/class-marker-label.php';
+require_once SRC_DIR . '/includes/class-marker-label-model.php';
+require_once SRC_DIR . '/includes/class-marker-label-view.php';
